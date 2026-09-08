@@ -34,17 +34,6 @@ NixOS flake configuration for WSL, laptop, and local cluster machines.
 └── flake.lock               # Locked flake inputs
 ```
 
-## Hosts
-
-| Host | Purpose |
-| --- | --- |
-| `wsl` | WSL development environment |
-| `hp15a` | Laptop configuration |
-| `t90plus` | Local cluster machine |
-| `t90plus-install` | Installation configuration for `t90plus` |
-
-`local-cluster` is enabled only for `t90plus`. It is not enabled during `t90plus-install`.
-
 ## Build and install
 
 Install required tools:
