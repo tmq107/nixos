@@ -1,0 +1,40 @@
+name: Upload new provider
+description: Upload new provider.
+method: POST
+url: https://terralist.devopslocal.dpdns.org/v1/api/providers/my-authority/random/2.0.0/upload
+path_params:
+- name: user
+  value: '2'
+auth:
+  type: bearer_token
+  bearer_token: 
+    token: x-api-key:password123   
+body: 
+  content: |-
+    {
+      "protocols": ["4.0", "5.1"],
+      "shasums": {
+        "url": "https://releases.hashicorp.com/terraform-provider-random/2.0.0/terraform-provider-random_2.0.0_SHA256SUMS",
+        "signature_url": "https://releases.hashicorp.com/terraform-provider-random/2.0.0/terraform-provider-random_2.0.0_SHA256SUMS.sig"
+      },
+      "platforms": [
+        {
+          "os": "darwin",
+          "arch": "amd64",
+          "download_url": "https://releases.hashicorp.com/terraform-provider-random/2.0.0/terraform-provider-random_2.0.0_darwin_amd64.zip",
+          "shasum": "55ced41e5f68730ef36272d4953f336a50f318c1d1d174665f5fa76cb5df08ae"
+        },
+        {
+          "os": "linux",
+          "arch": "amd64",
+          "download_url": "https://releases.hashicorp.com/terraform-provider-random/2.0.0/terraform-provider-random_2.0.0_linux_amd64.zip",
+          "shasum": "5f9c7aa76b7c34d722fc9123208e26b22d60440cb47150dd04733b9b94f4541a"
+        }
+      ]
+    }
+headers:
+- name: Content-Type
+  value: application/json
+
+
+

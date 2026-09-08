@@ -1,0 +1,111 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+REGION="${REGION:-eu-central-1}"
+DRY_RUN="${DRY_RUN:-true}"
+
+ACTION=$(
+  printf "disable\nenable\n" |
+  fzf --header="Choose action"
+)
+
+[ -z "$ACTION" ] && echo "No action selected." && exit 1
+
+ALL_ALARMS=$(
+  aws cloudwatch describe-alarms \
+    --region "$REGION" \
+    --query "MetricAlarms[?contains(AlarmName, '502_responses') || contains(AlarmName, '504_responses') || contains(AlarmName, 'other_5xx_responses') || contains(AlarmName, 'idp-paused')].[AlarmName]" \
+    --output text |
+  sort
+)
+
+ENVS=$(
+  echo "$ALL_ALARMS" |
+  awk '{print $1}' |
+  sed -E 's/(-alb-(502_responses|504_responses|other_5xx_responses)|-idp-paused)$//' |
+  sort -u |
+  fzf -m --header="Select environment(s)"
+)
+
+[ -z "$ENVS" ] && echo "No environment selected." && exit 1
+
+ALARMS=$(
+  echo "$ALL_ALARMS" |
+  awk '{print $1}' |
+  while read -r alarm; do
+    env_name=$(
+      echo "$alarm" |
+      sed -E 's/(-alb-(502_responses|504_responses|other_5xx_responses)|-idp-paused)$//'
+    )
+
+    if echo "$ENVS" | grep -Fxq "$env_name"; then
+      echo "$alarm"
+    fi
+  done
+)
+
+[ -z "$ALARMS" ] && echo "No matching alarms found." && exit 1
+
+echo
+echo "DRY_RUN: $DRY_RUN"
+echo "Action:  $ACTION"
+echo "Selected environment(s):"
+echo "$ENVS"
+echo "Alarms that will be changed:"
+echo "$ALARMS"
+echo
+
+if [ "$DRY_RUN" = true ]; then
+  echo "[DRY RUN] No changes made."
+  echo
+  echo "[DRY RUN] Would run:"
+
+  if [ "$ACTION" = "disable" ]; then
+    printf 'aws cloudwatch disable-alarm-actions --region %q --alarm-names' "$REGION"
+  else
+    printf 'aws cloudwatch enable-alarm-actions --region %q --alarm-names' "$REGION"
+  fi
+
+  for alarm in $ALARMS; do
+    printf ' %q' "$alarm"
+  done
+
+  echo
+  exit 0
+fi
+
+if [ "$ACTION" = "disable" ]; then
+  aws cloudwatch disable-alarm-actions \
+    --region "$REGION" \
+    --alarm-names $ALARMS
+else
+  aws cloudwatch enable-alarm-actions \
+    --region "$REGION" \
+    --alarm-names $ALARMS
+fi
+echo "Checking alarm action state..."
+
+EXPECTED_STATE="true"
+[ "$ACTION" = "disable" ] && EXPECTED_STATE="false"
+
+aws cloudwatch describe-alarms \
+  --region "$REGION" \
+  --alarm-names $ALARMS \
+  --query "MetricAlarms[*].[AlarmName,StateValue,ActionsEnabled]" \
+  --output table
+
+FAILED_CHECKS=$(
+  aws cloudwatch describe-alarms \
+    --region "$REGION" \
+    --alarm-names $ALARMS \
+    --query "MetricAlarms[?ActionsEnabled!=\`${EXPECTED_STATE}\`].AlarmName" \
+    --output text
+)
+
+if [ -n "$FAILED_CHECKS" ]; then
+  echo
+  echo "Some alarms did not reach expected ActionsEnabled=$EXPECTED_STATE:"
+  echo "$FAILED_CHECKS"
+  exit 1
+fi
+echo "Done. All selected alarms have ActionsEnabled=$EXPECTED_STATE."

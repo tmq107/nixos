@@ -1,0 +1,5 @@
+modules/dotfiles/home/.config/kiro/settings
+modules/dotfiles/home/.config/sofka/clusters
+modules/dotfiles/home/.zshenv_secret
+modules/dotfiles/home/.local/bin/notify-send
+

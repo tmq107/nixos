@@ -1,0 +1,41 @@
+##### K8S
+# kubectl
+alias k='kubectl'
+alias kns='kubectl config set-context --current --namespace '
+alias kimages='kubectl get pods -o jsonpath="{range .items[*]}{range .spec.initContainers[*]}{.image}{\"\n\"}{end}{range .spec.containers[*]}{.image}{\"\n\"}{end}{end}" | sort -u'
+# Switch kubectl context using fuzzy search
+alias kct='kubectl config use-context $(kubectl config get-contexts -o name | fzf)'
+
+##### directory
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+##### Alias for git
+alias gp='git pull'
+alias gl='git clone'
+alias gc='git checkout'
+alias gb='git branch'
+alias gst='git status'
+
+# Alias for alias show
+alias al='cat ~/.aliases'
+alias alf='cat ~/.funrc'
+
+##### Pi
+alias pi-sandbox='PI_NONO_ACTIVE=1 exec -a pi nono run --profile "${HOME}/personal/pi-agent/agent/configs/nono/pi-agent.jsonc" --allow-cwd -- pi '
+
+##### neovim
+alias vi='nvim'
+
+##### tor container
+alias tor='docker run -d --name tor-proxy --restart unless-stopped -p 9050:9050 -p 8118:8118 -v tor_data:/var/lib/tor -e CHECK="true" docker.io/dockurr/tor'
+alias torstop='docker rm -f tor-proxy'
+
+##### Kiro
+# Kiro login
+alias kiro='kiro-cli login --identity-provider https://ta-sso.awsapps.com/start --region eu-central-1'
+
+##### granted
+alias assume=". assume"
+

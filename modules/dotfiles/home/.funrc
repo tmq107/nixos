@@ -1,0 +1,61 @@
+# Connect to EKS cluster with isolated kubeconfig (safe for multiple tmux panes)
+eksconn() {
+  local profile
+  profile=$(aws configure list-profiles | fzf --prompt="AWS Profile: ") || return
+  export AWS_PROFILE="$profile"
+
+  if ! aws sts get-caller-identity --profile "$AWS_PROFILE" >/dev/null 2>&1; then
+    aws sso login --profile "$AWS_PROFILE" || return
+  fi
+  eval "$(aws configure export-credentials --profile "$AWS_PROFILE" --format env)"
+
+  local region="eu-central-1"
+
+  local cluster
+  cluster=$(aws eks list-clusters --query 'clusters[]' --region "$region" --output text | tr '	' '\n' | fzf --prompt="EKS Cluster: ") || return
+
+  local kube_file="/tmp/kubeconfig-${profile}-${cluster}"
+  aws eks update-kubeconfig \
+    --name "$cluster" \
+    --profile "$AWS_PROFILE" \
+    --region "$region" \
+    --kubeconfig "$kube_file"
+  export KUBECONFIG="$kube_file"
+
+  echo "Connected: profile=$AWS_PROFILE  cluster=$cluster  kubeconfig=$KUBECONFIG"
+}
+
+
+# Choose AWS Profiles
+awspro() {
+  local profile
+  profile=$(aws configure list-profiles | fzf) || return
+  export AWS_PROFILE="$profile"
+  echo "Active Profile: $AWS_PROFILE"
+
+  if ! aws sts get-caller-identity --profile "$AWS_PROFILE" >/dev/null 2>&1; then
+    aws sso login --profile "$AWS_PROFILE" || return
+  fi
+
+  # Log in and immediately grab raw keys so Terraform never breaks
+  eval "$(aws configure export-credentials --profile "$AWS_PROFILE" --format env)"
+  echo "Switched to $AWS_PROFILE and exported temporary keys."
+}
+
+mdr() {
+  local root="${1:-.}"
+  local selected
+  local -a files
+
+  selected=$(
+    fd --type f --hidden --follow --exclude .git -e md -e markdown . "$root" |
+      fzf -m --prompt="Markdown: " \
+            --preview 'bat --style=plain --color=always --line-range=:200 {}'
+  ) || return
+
+  [[ -z "$selected" ]] && return
+  files=("${(@f)selected}")
+  mdterm "${files[@]}"
+}
+
+

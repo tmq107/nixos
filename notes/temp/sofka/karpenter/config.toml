@@ -1,0 +1,167 @@
+# Workspace Karpenter
+[[workspaces]]
+name = "Karpenter"
+
+[[workspaces.views]]
+name = "NodePools"
+resource = "nodepools.karpenter.sh"
+
+[[workspaces.views]]
+name = "NodeClaims"
+resource = "nodeclaims.karpenter.sh"
+
+[[workspaces.views]]
+name = "EC2NodeClasses"
+resource = "ec2nodeclasses.karpenter.k8s.aws"
+
+[[workspaces.views]]
+name = "Nodes"
+resource = "nodes"
+
+
+# ============================================================
+# Nodes
+# ============================================================
+
+[views."v1/nodes"]
+
+[[views."v1/nodes".columns]]
+name = "NODEPOOL"
+path = "/metadata/labels/karpenter.sh~1nodepool"
+
+[[views."v1/nodes".columns]]
+name = "ZONE"
+path = "/metadata/labels/topology.kubernetes.io~1zone"
+
+[[views."v1/nodes".columns]]
+name = "INSTANCE"
+path = "/metadata/labels/node.kubernetes.io~1instance-type"
+
+[[views."v1/nodes".columns]]
+name = "TYPE"
+path = "/metadata/labels/karpenter.sh~1capacity-type"
+
+
+# ============================================================
+# NodePools
+# ============================================================
+
+[views."karpenter.sh/nodepools"]
+sort = "READY:desc"
+
+# Enter on a NodePool -> its NodeClaims
+drill = { kind = "nodeclaims", labels = "karpenter.sh/nodepool={name}" }
+
+[[views."karpenter.sh/nodepools".columns]]
+name = "READY"
+path = "Ready"
+type = "condition"
+
+[[views."karpenter.sh/nodepools".columns]]
+name = "NODECLASS"
+path = "/spec/template/spec/nodeClassRef/name"
+
+[[views."karpenter.sh/nodepools".columns]]
+name = "NODES"
+path = "/status/resources/nodes"
+type = "number"
+
+[[views."karpenter.sh/nodepools".columns]]
+name = "CPU"
+path = "/status/resources/cpu"
+type = "quantity"
+wide = true
+
+[[views."karpenter.sh/nodepools".columns]]
+name = "MEMORY"
+path = "/status/resources/memory"
+type = "quantity"
+wide = true
+
+[[views."karpenter.sh/nodepools".columns]]
+name = "WEIGHT"
+path = "/spec/weight"
+type = "number"
+wide = true
+
+
+# ============================================================
+# NodeClaims
+# ============================================================
+
+[views."karpenter.sh/nodeclaims"]
+sort = "READY:desc"
+
+# `o` or Enter can jump to the backing Kubernetes Node
+node = "/status/nodeName"
+
+[[views."karpenter.sh/nodeclaims".columns]]
+name = "READY"
+path = "Ready"
+type = "condition"
+
+[[views."karpenter.sh/nodeclaims".columns]]
+name = "NODE"
+path = "/status/nodeName"
+
+[[views."karpenter.sh/nodeclaims".columns]]
+name = "NODEPOOL"
+path = "/metadata/labels/karpenter.sh~1nodepool"
+
+[[views."karpenter.sh/nodeclaims".columns]]
+name = "INSTANCE"
+path = "/metadata/labels/node.kubernetes.io~1instance-type"
+
+[[views."karpenter.sh/nodeclaims".columns]]
+name = "TYPE"
+path = "/metadata/labels/karpenter.sh~1capacity-type"
+
+[[views."karpenter.sh/nodeclaims".columns]]
+name = "ZONE"
+path = "/metadata/labels/topology.kubernetes.io~1zone"
+
+[[views."karpenter.sh/nodeclaims".columns]]
+name = "CPU"
+path = "/status/allocatable/cpu"
+type = "quantity"
+wide = true
+
+[[views."karpenter.sh/nodeclaims".columns]]
+name = "MEMORY"
+path = "/status/allocatable/memory"
+type = "quantity"
+wide = true
+
+
+# ============================================================
+# AWS EC2NodeClasses
+# ============================================================
+
+[views."karpenter.k8s.aws/ec2nodeclasses"]
+sort = "READY:desc"
+
+[[views."karpenter.k8s.aws/ec2nodeclasses".columns]]
+name = "READY"
+path = "Ready"
+type = "condition"
+
+[[views."karpenter.k8s.aws/ec2nodeclasses".columns]]
+name = "AMIS"
+path = "AMIsReady"
+type = "condition"
+
+[[views."karpenter.k8s.aws/ec2nodeclasses".columns]]
+name = "SUBNETS"
+path = "SubnetsReady"
+type = "condition"
+
+[[views."karpenter.k8s.aws/ec2nodeclasses".columns]]
+name = "SECURITYGROUPS"
+path = "SecurityGroupsReady"
+type = "condition"
+
+[[views."karpenter.k8s.aws/ec2nodeclasses".columns]]
+name = "ROLE"
+path = "/spec/role"
+wide = true
+

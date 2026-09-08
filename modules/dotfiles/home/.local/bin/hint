@@ -1,0 +1,73 @@
+#!/usr/bin/env bash
+# hint — quick cheatsheet printer
+
+BOLD="\033[1m"
+DIM="\033[2m"
+RESET="\033[0m"
+CYAN="\033[36m"
+YELLOW="\033[33m"
+GREEN="\033[32m"
+MAGENTA="\033[35m"
+RED="\033[31m"
+BLUE="\033[34m"
+
+topic="${1:-all}"
+
+print_commits() {
+  echo ""
+  echo -e "${BOLD}${CYAN}  CONVENTIONAL COMMITS${RESET}"
+  echo -e "${DIM}  ─────────────────────────────────────────────${RESET}"
+  echo -e "  ${YELLOW}feat${RESET}      New feature"
+  echo -e "  ${RED}fix${RESET}       Bug fix"
+  echo -e "  ${DIM}chore${RESET}     Maintenance, deps, tooling — no prod change"
+  echo -e "  ${BLUE}docs${RESET}      Documentation only"
+  echo -e "  ${GREEN}refactor${RESET}  Restructure code — no behavior change"
+  echo -e "  ${MAGENTA}style${RESET}     Formatting, whitespace — no logic change"
+  echo -e "  ${CYAN}test${RESET}      Add or fix tests"
+  echo -e "  ${GREEN}perf${RESET}      Performance improvement"
+  echo -e "  ${DIM}ci${RESET}        CI/CD config changes"
+  echo -e "  ${DIM}build${RESET}     Build system changes"
+  echo -e "  ${RED}revert${RESET}    Revert a prior commit"
+  echo ""
+  echo -e "${BOLD}  Format:${RESET}"
+  echo -e "  ${DIM}<type>(<scope>): <short description>${RESET}"
+  echo -e "  ${DIM}<type>(<scope>)!: <desc>   ← ! = breaking change${RESET}"
+  echo ""
+  echo -e "${BOLD}  Examples:${RESET}"
+  echo -e "  ${YELLOW}feat${RESET}(auth): add OAuth2 login"
+  echo -e "  ${RED}fix${RESET}(api)!: remove deprecated endpoint"
+  echo -e "  ${DIM}chore${RESET}: bump deps"
+  echo -e "  ${BLUE}docs${RESET}(readme): update setup steps"
+  echo ""
+  echo -e "${BOLD}  Ticket / Footer:${RESET}"
+  echo -e "  ${DIM}<type>(<scope>): <desc>${RESET}"
+  echo -e "  ${DIM}<blank line>${RESET}"
+  echo -e "  ${DIM}Closes #<ticket>   ← auto-closes on GitHub/GitLab merge${RESET}"
+  echo -e "  ${DIM}Refs: #<ticket>    ← links without closing${RESET}"
+  echo ""
+  echo -e "${BOLD}  Ticket Examples:${RESET}"
+  echo -e "  ${YELLOW}feat${RESET}(auth): add OAuth2 login"
+  echo -e "  ${DIM}  (blank)${RESET}"
+  echo -e "  ${DIM}  Closes #21342${RESET}"
+  echo ""
+  echo -e "  ${RED}fix${RESET}(api): handle null response"
+  echo -e "  ${DIM}  (blank)${RESET}"
+  echo -e "  ${DIM}  Refs: #21342${RESET}"
+  echo ""
+  echo -e "  ${DIM}  # scope as ticket (less common)${RESET}"
+  echo -e "  ${YELLOW}feat${RESET}(#21342): add OAuth2 login"
+  echo ""
+  echo -e "${DIM}  spec: https://www.conventionalcommits.org${RESET}"
+  echo ""
+}
+
+case "$topic" in
+  commits|all)
+    print_commits
+    ;;
+  *)
+    echo -e "${RED}Unknown topic: $topic${RESET}"
+    echo -e "Usage: hint [commits]"
+    exit 1
+    ;;
+esac

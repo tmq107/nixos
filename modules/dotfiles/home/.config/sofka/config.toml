@@ -1,0 +1,124 @@
+# General
+default_namespace = "default"  
+default_resource  = "pods"
+readonly          = false  
+mouse             = true
+favorite_namespaces = ["kube-system", "default"]
+
+[aliases]
+dep="deployments"
+sec="v1/secrets"
+jo="jobs"
+cr="clusterroles"
+crb="clusterrolebindings"
+ro="roles"
+rb="rolebindings"
+np="networkpolicies"
+ns="namespace"
+
+[skin]
+name = "catppuccin-mocha"
+background = true
+
+[debug]
+image="nicolaka/netshoot:latest"
+command=["bash"]
+node_image="nicolaka/netshoot:latest"
+node_namespace="default"
+
+[thresholds]
+restarts    = { warn = 3, critical = 10 }
+cpu         = { warn = "500m", critical = "1" }
+memory      = { warn = "512Mi", critical = "1Gi" }
+utilization = { warn = 85, critical = 90 }
+
+# Bookmark
+[[bookmarks]]
+name = "Non-running pods"
+resource = "pods"
+namespace = "all"
+filter = "status!=Running"
+sort = "RESTARTS:desc"
+
+# Workspaces
+## Default
+[[workspaces]]
+name = "default"
+
+[[workspaces.views]]
+name = "Pods"
+resource = "pods"
+
+[[workspaces.views]]
+name = "Deployments"
+resource = "deployments"
+
+[[workspaces.views]]
+name = "Services"
+resource = "services"
+
+[[workspaces.views]]
+name = "Ingress"
+resource = "ingresses"
+
+[[workspaces.views]]
+name = "HTTPRoutes"
+resource = "httproutes"
+
+## Flux
+[[workspaces]]
+name = "flux"
+
+[[workspaces.views]]
+name = "Kustomizations"
+resource = "kustomizations.kustomize.toolkit.fluxcd.io"
+namespace = "all"
+
+[[workspaces.views]]
+name = "HelmReleases"
+resource = "helmreleases.helm.toolkit.fluxcd.io"
+namespace = "all"
+
+[[workspaces.views]]
+name = "GitRepositories"
+resource = "gitrepositories.source.toolkit.fluxcd.io"
+namespace = "flux-system"
+
+[[workspaces.views]]
+name = "OCIRepositories"
+resource = "ocirepositories.source.toolkit.fluxcd.io"
+namespace = "flux-system"
+
+[[workspaces.views]]
+name = "HelmRepositories"
+resource = "helmrepositories.source.toolkit.fluxcd.io"
+namespace = "flux-system"
+
+# Plugins
+[[plugins]]
+key = "shift-y"
+name = "yaml-summary"
+command = "kubectl"
+args = ["get", "$RESOURCE", "$NAME", "-n", "$NAMESPACE", "-o", "yaml"]
+scopes = ["pods", "deployments"]
+mutating = false
+output = "popup"
+
+# Views
+[views."cert-manager.io/v1/certificates"]
+sort = "EXPIRES:desc"     
+
+[[views."cert-manager.io/v1/certificates".columns]]
+name = "READY"
+path = "Ready"
+type = "condition"
+
+[[views."cert-manager.io/v1/certificates".columns]]
+name = "EXPIRES"
+path = "/status/notAfter"
+type = "time"
+
+[[views."cert-manager.io/v1/certificates".columns]]
+name = "ISSUER"
+path = "/spec/issuerRef/name"
+wide = true

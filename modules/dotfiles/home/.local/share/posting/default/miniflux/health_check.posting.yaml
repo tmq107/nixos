@@ -1,0 +1,5 @@
+name: Health Check API Miniflux
+description: Health Check.
+method: GET
+url: https://miniflux.devopslocal.site/healthcheck
+

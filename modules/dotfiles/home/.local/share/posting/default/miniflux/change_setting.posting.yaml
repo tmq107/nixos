@@ -1,0 +1,22 @@
+name: Change setting user
+description: Change setting user.
+method: PUT
+url: https://miniflux.devopslocal.site/v1/users/:user
+path_params:
+- name: user
+  value: '2'
+auth:
+  type: basic
+  basic:
+    username: admin
+    password: ''
+body: 
+  content: |-
+    {
+      "entry_sorting_direction": "desc"
+    }
+headers:
+- name: Content-Type
+  value: application/json
+
+

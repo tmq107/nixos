@@ -1,0 +1,39 @@
+#!/usr/bin/env sh
+# wslview replacement — open URL or file in Windows default app
+# Optional first arg: --chrome | --firefox | --edge
+
+usage() {
+    cat >&2 <<EOF
+usage: wslview [OPTION] <url|path>
+
+Options:
+  --chrome     open in Google Chrome
+  --firefox    open in Mozilla Firefox
+  --edge       open in Microsoft Edge
+  --help, -h   show this help
+
+No option: opens in Windows default browser/app
+EOF
+}
+
+BROWSER_EXE=""
+
+case "$1" in
+  --chrome)  BROWSER_EXE="chrome.exe";  shift ;;
+  --firefox) BROWSER_EXE="firefox.exe"; shift ;;
+  --edge)    BROWSER_EXE="msedge.exe";  shift ;;
+  --help|-h) usage; exit 0 ;;
+esac
+
+if [ -z "$1" ]; then
+    usage
+    exit 1
+fi
+
+if [ -n "$BROWSER_EXE" ]; then
+    exec powershell.exe -NoProfile -Command "Start-Process '$BROWSER_EXE' '$1'"
+elif [ -e "$1" ]; then
+    exec powershell.exe -NoProfile -Command "Start-Process '$(wslpath -w "$1")'"
+else
+    exec powershell.exe -NoProfile -Command "Start-Process '$1'"
+fi

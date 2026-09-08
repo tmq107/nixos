@@ -1,0 +1,14 @@
+name: Get setting user
+description: Get setting user.
+method: GET
+url: https://miniflux.devopslocal.site/v1/users/:user
+path_params:
+- name: user
+  value: 'admin@devopslocal.site'
+auth:
+  type: basic
+  basic:
+    username: admin
+    password: ''
+
+

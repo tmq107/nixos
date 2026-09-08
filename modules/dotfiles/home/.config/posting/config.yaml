@@ -1,0 +1,7 @@
+use_host_environment : true
+theme: catppuccin-mocha
+layout: vertical
+theme_directory: /home/quanthai/.config/posting/themes/
+keymap:
+  quit: ctrl+q
+

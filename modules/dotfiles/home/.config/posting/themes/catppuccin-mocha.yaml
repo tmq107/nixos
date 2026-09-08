@@ -1,0 +1,40 @@
+name: catppuccin-mocha
+author: quanthai
+description: Catppuccin Mocha theme for Posting, matching Neovim setup.
+homepage: https://catppuccin.com
+
+primary: '#a6e3a1'      # green - buttons, fixed table columns
+secondary: '#94e2d5'    # teal - method selector, minor labels
+accent: '#a6e3a1'       # green - header text, scrollbars, cursors, focus highlights
+background: '#1e1e2e'   # base - main background
+surface: '#313244'      # surface0 - panels
+error: '#f38ba8'        # red - error messages
+success: '#a6e3a1'      # green - success messages
+warning: '#f9e2af'      # yellow - warning messages
+
+text_area:
+  cursor: 'reverse'
+  cursor_line: 'underline'
+  selection: 'reverse'
+  gutter: 'bold #585b70'
+  matched_bracket: 'black on #a6e3a1'
+
+url:
+  base: 'italic #a6e3a1'
+  protocol: 'bold #94e2d5'
+
+syntax:
+  json_key: 'italic #a6e3a1'
+  json_number: '#fab387'
+  json_string: '#a6e3a1'
+  json_boolean: '#94e2d5'
+  json_null: 'underline #6c7086'
+
+method:
+  get: '#a6e3a1'
+  post: 'bold #a6e3a1'
+  put: 'bold #fab387'
+  delete: '#f38ba8'
+  patch: '#f9e2af'
+  head: '#94e2d5'
+  options: '#a6e3a1'

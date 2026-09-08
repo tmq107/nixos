@@ -1,0 +1,32 @@
+[user]
+	name = Quan Thai
+	email = minhquan010710@gmail.com
+[credential]
+    helper = cache --timeout=259200
+[init]
+	defaultBranch = master
+[diff]
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
+[branch]
+	sort = -committerdate
+[tag]
+	sort = version:refname
+[fetch]
+	all = true
+[pull]
+	rebase = true
+[push]
+	autoSetupRemote = true
+	followTags = true
+[rebase]
+	autoSquash = true
+	autoStash = true
+	updateRefs = true
+[rerere]
+	enabled = true
+	autoupdate = true
+[help]
+	autocorrect = prompt

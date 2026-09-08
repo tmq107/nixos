@@ -1,0 +1,10 @@
+name: Get All Feeds
+description: Get all feeds.
+method: GET
+url: https://miniflux.devopslocal.site/v1/feeds
+auth:
+  type: basic
+  basic:
+    username: admin
+    password: ''
+

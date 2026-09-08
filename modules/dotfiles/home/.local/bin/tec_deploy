@@ -1,0 +1,91 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+DRY_RUN="${DRY_RUN:-true}"
+
+read -r -p "Enter target replica count: " TARGET_REPLICAS
+
+if ! [[ "$TARGET_REPLICAS" =~ ^[0-9]+$ ]]; then
+  echo "Invalid replica count: $TARGET_REPLICAS"
+  exit 1
+fi
+
+NAMESPACES=$(
+  printf "default\nbackground-cronjobs\n" |
+  fzf -m \
+    --header="Select namespace(s). Tab to select, Ctrl-A select all, Enter confirm" \
+    --bind 'ctrl-a:select-all'
+)
+
+[ -z "$NAMESPACES" ] && echo "No namespace selected." && exit 1
+
+DEPLOYMENTS=$(
+  for ns in $NAMESPACES; do
+    kubectl get deployments -n "$ns" \
+      -o custom-columns='NAMESPACE:.metadata.namespace,NAME:.metadata.name' \
+      --no-headers |
+    awk '$2 !~ /^oneportal$|oneapigateway/'
+  done
+)
+
+[ -z "$DEPLOYMENTS" ] && echo "No matching deployments found." && exit 1
+
+echo
+echo "DRY_RUN:          $DRY_RUN"
+echo "Target replicas:  $TARGET_REPLICAS"
+echo
+echo "Selected namespace(s):"
+echo "$NAMESPACES"
+echo
+echo "Deployments that will be scaled:"
+echo "$DEPLOYMENTS"
+echo
+
+if [ "$DRY_RUN" = true ]; then
+  echo "[DRY RUN] No changes made."
+  echo
+  echo "[DRY RUN] Would run:"
+
+  echo "$DEPLOYMENTS" | while read -r ns deploy ready desired; do
+    printf 'kubectl scale deployment %q -n %q --replicas=%q\n' \
+      "$deploy" "$ns" "$TARGET_REPLICAS"
+  done
+
+  exit 0
+fi
+
+echo "$DEPLOYMENTS" | while read -r ns deploy ready desired; do
+  echo "Scaling $ns/$deploy to $TARGET_REPLICAS..."
+
+  kubectl scale deployment "$deploy" \
+    -n "$ns" \
+    --replicas="$TARGET_REPLICAS"
+done
+
+echo
+echo "Checking deployment replica state..."
+
+echo "$DEPLOYMENTS" | while read -r ns deploy ready desired; do
+  CURRENT_REPLICAS=$(
+    kubectl get deployment "$deploy" \
+      -n "$ns" \
+      -o jsonpath='{.spec.replicas}'
+  )
+
+  AVAILABLE_REPLICAS=$(
+    kubectl get deployment "$deploy" \
+      -n "$ns" \
+      -o jsonpath='{.status.availableReplicas}' 2>/dev/null || true
+  )
+
+  AVAILABLE_REPLICAS="${AVAILABLE_REPLICAS:-0}"
+
+  echo "$ns/$deploy - desired=$CURRENT_REPLICAS available=$AVAILABLE_REPLICAS"
+
+  if [ "$CURRENT_REPLICAS" != "$TARGET_REPLICAS" ]; then
+    echo "WARNING: $ns/$deploy expected replicas=$TARGET_REPLICAS but got $CURRENT_REPLICAS"
+  fi
+done
+
+echo
+echo "Done."

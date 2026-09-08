@@ -1,0 +1,14 @@
+name: Get Latest Release
+description: Get the latest release of a GitHub repository.
+method: GET
+url: https://api.github.com/repos/:owner/:repo/releases/latest
+path_params:
+- name: owner
+  value: 'hashicorp'
+- name: repo
+  value: 'terraform'
+headers:
+  - name: Accept
+    value: application/vnd.github+json
+  - name: X-GitHub-Api-Version
+    value: "2022-11-28"
