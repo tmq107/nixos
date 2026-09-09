@@ -143,8 +143,8 @@
 ## Comment Toggle (Custom)
 | Key | Mode | Action |
 |-----|------|--------|
-| `Ctrl+/` | Normal | Toggle comment line |
-| `Ctrl+/` | Visual | Toggle comment selection |
+| `Ctrl+/` (`Ctrl+_`) | Normal | Toggle comment line |
+| `Ctrl+/` (`Ctrl+_`) | Visual | Toggle comment selection |
 
 ---
 

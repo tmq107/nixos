@@ -28,16 +28,16 @@
 ## Windows & Panes
 | Key | Action |
 |-----|--------|
-| `v` | Split vertical |
-| `h` | Split horizontal |
-| `c` | New window |
+| `Prefix + v` | Split vertical |
+| `Prefix + h` | Split horizontal |
+| `Prefix + c` | New window |
 | `Prefix + ,` | Rename window |
 | `Prefix + &` | Close window |
 | `Prefix + n` | Next window |
 | `Prefix + p` | Previous window |
 | `Prefix + w` | List windows |
 | `Prefix + x` | Close pane |
-| `r` | Reload config |
+| `Prefix + r` | Reload config |
 
 ## Navigation
 | Key | Action |
@@ -46,3 +46,8 @@
 | `Ctrl+Right` | Navigate to right pane |
 | `Ctrl+Up` | Navigate to upper pane |
 | `Ctrl+Down` | Navigate to lower pane |
+
+## Direct Application Passthrough
+| Key | Action |
+|-----|--------|
+| `Ctrl+j` | Pass through to application |

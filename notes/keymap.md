@@ -7,4 +7,4 @@
 - [Herdr](keymaps/herdr.md)
 - [Kitty](keymaps/kitty.md)
 - [Pi](keymaps/pi.md) -- Coding Agent TUI
-- [K9s](keymaps/k9s.md)
+

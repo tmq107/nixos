@@ -13,7 +13,7 @@
 | Key | Action |
 |-----|--------|
 | `Ctrl+T` | New tab with cwd |
-| `Ctrl+W` | Close tab |
+| `Ctrl+Shift+X` | Close tab |
 | `Ctrl+Left` | Previous tab |
 | `Ctrl+Right` | Next tab |
 | `Ctrl+1`-`Ctrl+7` | Go to tab 1-7 |

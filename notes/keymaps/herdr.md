@@ -26,7 +26,6 @@
 |-----|--------|
 | `Prefix + v` | Split vertical (new pane on right) |
 | `Prefix + h` | Split horizontal (new pane below) |
-| `Prefix + x` | Close pane |
 | `Prefix + z` | Zoom pane |
 | `Prefix + [` | Copy mode |
 | `Prefix + Shift+r` | Resize mode |
@@ -39,6 +38,13 @@
 | `Prefix + Right` | Focus right pane |
 | `Prefix + Up` | Focus upper pane |
 | `Prefix + Down` | Focus lower pane |
+
+## Workspaces
+| Key | Action |
+|-----|--------|
+| `Prefix + Shift+1..9` | Switch workspace 1..9 |
+| `Prefix + u` | Previous workspace |
+| `Prefix + i` | Next workspace |
 
 ## Behavior
 | Setting | Value |
