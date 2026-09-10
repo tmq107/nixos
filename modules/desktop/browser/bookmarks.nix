@@ -90,4 +90,19 @@
       }
     ];
   }
+
+  {
+    name = "Game";
+    bookmarks = [
+      {
+        name = "FIFA";
+        url = "https://aurorapespc.io.vn/index.html";
+      }
+      {
+        name = "SIMS";
+        url = "https://sharelinkgame.com/";
+      }
+    ];
+  }
+
 ]
