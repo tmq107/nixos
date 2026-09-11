@@ -73,6 +73,9 @@ vim.schedule(function()
     -- fzf-lua
     require("fzf-lua").setup({
         "max-perf",
+        grep = {
+            rg_opts = "--hidden --column --line-number --no-heading --color=never --smart-case --glob '!**/.git/*'",
+        },
         actions = {
             files = {
                 ["default"] = function(selected, opts)
