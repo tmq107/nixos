@@ -6,7 +6,9 @@ filename = "{{slug title}}"
 extension = "md"
 template = "default.md"
 exclude = [
-  "manifest/**"
+  "manifest/**",
+  "**/*.png",
+  "*.png",
 ]
 
 [alias]
