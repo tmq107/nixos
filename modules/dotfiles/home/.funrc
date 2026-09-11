@@ -58,4 +58,12 @@ mdr() {
   mdterm "${files[@]}"
 }
 
+nixs() {
+  local packages=()
+  for pkg in "$@"; do
+    packages+=("nixpkgs#$pkg")
+  done
+
+  nix shell "${packages[@]}"
+}
 
