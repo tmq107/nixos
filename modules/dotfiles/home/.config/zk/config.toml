@@ -13,7 +13,8 @@ exclude = [
 
 [alias]
 search = 'zk list --quiet --format "{{path}}" --match $@'
-read = 'zk list --quiet --format "{{rawContent}}" --limit 1 $@'
+read = 'zk list --quiet --format "{{rawContent}}" --limit 1 "$@"'
+read-md = 'zk list --quiet --format "{{rawContent}}" --limit 1 "$@" | mdterm'
 links = 'zk list --quiet --format "{{path}}" --linked-by $@'
 backlinks = 'zk list --quiet --format "{{path}}" --link-to $@'
-get = 'zk search $@ | fzf | xargs -r zk read'
+get = 'zk search $@ | fzf | xargs -r zk read-md'
