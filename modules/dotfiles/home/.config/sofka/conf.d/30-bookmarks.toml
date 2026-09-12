@@ -1,0 +1,6 @@
+[[bookmarks]]
+name = "Non-running pods"
+resource = "pods"
+namespace = "all"
+filter = "status!=Running"
+sort = "RESTARTS:desc"

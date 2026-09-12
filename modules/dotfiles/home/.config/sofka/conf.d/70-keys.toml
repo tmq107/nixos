@@ -1,0 +1,6 @@
+[keys.navigation]
+page_up = ["pageup", "ctrl-b", "ctrl-u"]
+page_down = ["pagedown", "ctrl-f", "ctrl-d"]
+
+[keys.table]
+delete = "alt-d"

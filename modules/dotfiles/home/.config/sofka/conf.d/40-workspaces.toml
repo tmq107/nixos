@@ -1,0 +1,52 @@
+## Default
+[[workspaces]]
+name = "default"
+
+[[workspaces.views]]
+name = "Pods"
+resource = "pods"
+
+[[workspaces.views]]
+name = "Deployments"
+resource = "deployments"
+
+[[workspaces.views]]
+name = "Services"
+resource = "services"
+
+[[workspaces.views]]
+name = "Ingress"
+resource = "ingresses"
+
+[[workspaces.views]]
+name = "HTTPRoutes"
+resource = "httproutes"
+
+## Flux
+[[workspaces]]
+name = "flux"
+
+[[workspaces.views]]
+name = "Kustomizations"
+resource = "kustomizations.kustomize.toolkit.fluxcd.io"
+namespace = "all"
+
+[[workspaces.views]]
+name = "HelmReleases"
+resource = "helmreleases.helm.toolkit.fluxcd.io"
+namespace = "all"
+
+[[workspaces.views]]
+name = "GitRepositories"
+resource = "gitrepositories.source.toolkit.fluxcd.io"
+namespace = "flux-system"
+
+[[workspaces.views]]
+name = "OCIRepositories"
+resource = "ocirepositories.source.toolkit.fluxcd.io"
+namespace = "flux-system"
+
+[[workspaces.views]]
+name = "HelmRepositories"
+resource = "helmrepositories.source.toolkit.fluxcd.io"
+namespace = "flux-system"

@@ -1,0 +1,6 @@
+[thresholds]
+restarts    = { warn = 5, critical = 10 }
+cpu         = { warn = "500m", critical = "1" }
+memory      = { warn = "512Mi", critical = "1Gi" }
+utilization = { warn = 85, critical = 90 }
+

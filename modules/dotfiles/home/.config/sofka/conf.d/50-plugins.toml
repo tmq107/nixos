@@ -1,0 +1,8 @@
+[[plugins]]
+key = "shift-y"
+name = "yaml-summary"
+command = "kubectl"
+args = ["get", "$RESOURCE", "$NAME", "-n", "$NAMESPACE", "-o", "yaml"]
+scopes = ["pods", "deployments"]
+mutating = false
+output = "popup"

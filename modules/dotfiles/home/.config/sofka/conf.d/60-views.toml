@@ -1,0 +1,23 @@
+[views."cert-manager.io/v1/certificates"]
+sort = "EXPIRES:desc"     
+
+[[views."cert-manager.io/v1/certificates".columns]]
+name = "READY"
+path = "Ready"
+type = "condition"
+
+[[views."cert-manager.io/v1/certificates".columns]]
+name = "EXPIRES"
+path = "/status/notAfter"
+type = "time"
+
+[[views."cert-manager.io/v1/certificates".columns]]
+name = "ISSUER"
+path = "/spec/issuerRef/name"
+wide = true
+
+
+[[views."apps/v1/deployments".columns]]
+name = "IMAGE"
+path = "/spec/template/spec/containers/0/image"
+type = "text"
