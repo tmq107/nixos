@@ -169,8 +169,7 @@
 | Key | Mode | Action |
 |-----|------|--------|
 | `Ctrl+h` | Normal | Find and replace in current file (prompts search -> replace, confirms each) |
-| `Ctrl+Shift+h` | Normal | Find and replace with scope picker and preview |
-| `Space+h` | Normal | Find and replace with scope picker and preview |
+| `Ctrl+H` | Normal | Find and replace with scope picker and preview |
 
 **Scope picker:**
 

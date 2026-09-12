@@ -1,5 +1,5 @@
 [[plugins]]
-key = "shift-y"
+key = "alt-y"
 name = "yaml-summary"
 command = "kubectl"
 args = ["get", "$RESOURCE", "$NAME", "-n", "$NAMESPACE", "-o", "yaml"]

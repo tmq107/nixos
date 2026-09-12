@@ -1,12 +1,12 @@
 [[guardrails]]
 contexts = ["*prod*"]
 actions = ["delete", "force-delete", "drain"]
-confirmation = "yes-or-no"
+confirmation = "confirm"
 reason = "Confirm the you can delete it."
 
 [[guardrails]]
 namespaces = ["kube-system"]
 actions = ["delete"]
-confirmation = "yes-or-no"
+confirmation = "confirm"
 reason = "Confirm the you can delete it."
 

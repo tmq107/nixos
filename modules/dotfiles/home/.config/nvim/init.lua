@@ -295,8 +295,7 @@ vim.schedule(function()
     end
 
     map("n", "<C-h>", replace_in_file, { desc = "Find and replace in current file" })
-    map("n", "<C-S-h>", replace_in_all_files, { desc = "Find and replace with scope picker and preview" })
-    map("n", "<leader>h", replace_in_all_files, { desc = "Find and replace with scope picker and preview" })
+    map("n", "<C-H>", replace_in_all_files, { desc = "Find and replace with scope picker and preview" })
 
     -- Neo-tree
     map("n", "<C-n>", ":Neotree filesystem reveal left<CR>", {})
