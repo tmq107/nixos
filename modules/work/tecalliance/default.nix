@@ -33,7 +33,6 @@ in
         azure-cli-extensions.azure-devops
       ])
       direnv
-      eksctl
       pre-commit
       unstable.kiro-cli
     ];
