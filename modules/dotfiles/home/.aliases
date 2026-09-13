@@ -44,3 +44,7 @@ alias assume=". assume"
 # calculator
 alias calc='python -i -c "from math import *"'
 
+# zk
+alias zkn='zk --notebook-dir ~/personal/notes'
+alias zkp='zk --notebook-dir ~/personal/plans'
+alias zkw='zk --notebook-dir ~/personal/work'
