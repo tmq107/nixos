@@ -13,12 +13,13 @@ alias l='ls -CF'
 
 # Alias for git
 alias gp='git pull'
-alias gl='git clone'
+alias gcl='git clone'
 alias gc='git checkout'
 alias gb='git branch'
 alias gst='git status'
 alias gd='git diff'
 alias gl='git log --oneline -5'
+alias gpl='git push --force-with-lease'
 
 # Alias for alias show
 alias al='cat ~/.aliases'
