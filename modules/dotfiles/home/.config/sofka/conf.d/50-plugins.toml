@@ -6,3 +6,28 @@ args = ["get", "$RESOURCE", "$NAME", "-n", "$NAMESPACE", "-o", "yaml"]
 scopes = ["pods", "deployments"]
 mutating = false
 output = "popup"
+
+
+[[plugins]]
+palette = "scale-all"
+name = "scale-all-deployments"
+
+command = "kubectl"
+args = [
+  "scale",
+  "deployment",
+  "--all",
+  "--replicas",
+  "${input.reps}",
+  "-n",
+  "$NAMESPACE"
+]
+scopes = ["deployments"]
+target = "context"
+confirm = true
+
+[plugins.inputs.reps]
+type = "integer"
+min = 0
+max = 5
+
