@@ -287,7 +287,7 @@ vim.schedule(function()
                 if replace == nil then return end
                 local cmd = string.format("%%s/\\V%s/%s/gc",
                     vim.fn.escape(search, "/\\"),
-                    vim.fn.escape(replace, "/\\")
+                    vim.fn.escape(replace, [[/\&~]])
                 )
                 local ok, err = pcall(vim.cmd, cmd)
                 if not ok then
