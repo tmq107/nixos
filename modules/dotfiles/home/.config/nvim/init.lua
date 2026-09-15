@@ -289,13 +289,20 @@ vim.schedule(function()
                     vim.fn.escape(search, "/\\"),
                     vim.fn.escape(replace, "/\\")
                 )
-                vim.cmd(cmd)
+                local ok, err = pcall(vim.cmd, cmd)
+                if not ok then
+                    if tostring(err):match("E486") then
+                        vim.notify("No matches found for '" .. search .. "'", vim.log.levels.INFO)
+                    else
+                        vim.notify(tostring(err), vim.log.levels.ERROR)
+                    end
+                end
             end)
         end)
     end
 
     map("n", "<C-h>", replace_in_file, { desc = "Find and replace in current file" })
-    map("n", "<C-H>", replace_in_all_files, { desc = "Find and replace with scope picker and preview" })
+    map("n", "<C-b>h", replace_in_all_files, { desc = "Find and replace with scope picker and preview" })
 
     -- Neo-tree
     map("n", "<C-n>", ":Neotree filesystem reveal left<CR>", {})
