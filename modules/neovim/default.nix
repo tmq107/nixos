@@ -18,10 +18,8 @@
       # formatters and Treesitter parser compiler
       alejandra
       black
-      go
       prettier
       stylua
-      terraform
       tree-sitter
 
       # markdown support
