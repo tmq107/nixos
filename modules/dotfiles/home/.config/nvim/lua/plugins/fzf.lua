@@ -1,12 +1,22 @@
 -- Configure fuzzy finder behavior.
 local M = {}
 
+-- Exclude generated and version-control files from project search.
+local ignored_globs = {
+    "!**/.git/**",
+    "!**/node_modules/**",
+}
+
+local rg_opts = "--hidden --column --line-number --no-heading --color=never --smart-case --glob '"
+    .. table.concat(ignored_globs, "' --glob '")
+    .. "'"
+
 function M.setup(map)
-    -- Search hidden files while excluding Git metadata.
+    -- Search hidden files while excluding configured paths.
     require("fzf-lua").setup({
         "max-perf",
         grep = {
-            rg_opts = "--hidden --column --line-number --no-heading --color=never --smart-case --glob '!**/.git/*'",
+            rg_opts = rg_opts,
         },
         actions = {
             files = {
