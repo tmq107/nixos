@@ -110,3 +110,4 @@ Keep private keys and other secrets outside the repository. The SOPS age key and
 
 ## Acknowledgements
 - [khuedoan/dotfiles](https://github.com/khuedoan/dotfiles)
+- [voidarc/nvim](https://git.voidarc.co.uk/voidarc/nvim)
