@@ -3,6 +3,7 @@
 {
   imports = [
     ./browser/firefox.nix
+    ./cloudflare-warp.nix
   ];
 
   hardware.graphics = {
