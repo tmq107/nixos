@@ -45,28 +45,33 @@ awspro() {
 mdr() {
   local root="${1:-.}"
   local selected
+  local -a files
 
   selected=$(
     fd --type f --hidden --follow --exclude .git \
       -e md -e markdown . "$root" |
       fzf \
+        --multi \
+        --bind 'ctrl-a:select-all' \
+        --header 'Ctrl-A: select all filtered files' \
         --prompt="Markdown: " \
         --preview 'bat --style=plain --color=always --line-range=:200 {}'
   ) || return
 
   [[ -z "$selected" ]] && return
-
-  md "$selected"
+  files=("${(@f)selected}")
+  md "${files[@]}"
 }
 
 md() {
   local file
-  file="$(realpath "$1")" || return 1
+  local -a files
 
-  (
-    cd "$(dirname "$file")" || return 1
-    command mdterm "$(basename "$file")"
-  )
+  for file in "$@"; do
+    files+=("$(realpath "$file")") || return 1
+  done
+
+  command mdterm "${files[@]}"
 }
 
 nixs() {
