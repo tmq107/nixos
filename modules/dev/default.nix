@@ -7,7 +7,7 @@
       go
 
       # NPM
-      bun
+      unstable.bun
       nodejs
       typescript
 
