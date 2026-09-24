@@ -11,7 +11,10 @@
 
       # workflow simulation
       wrkflw
-
+      
+      # Rust
+      rustc
+      cargo
     ];
   };
 

@@ -20,7 +20,10 @@ function M.setup(map)
         settings = {
             yaml = {
                 schemas = {
-                    ["https://json.schemastore.org/github-workflow.json"] = ".github/workflows/*.yml",
+                    ["https://json.schemastore.org/github-workflow.json"] = {
+                        ".github/workflows/*.yml",
+                        ".github/workflows/*.yaml",
+                    },
                 },
                 validate = true,
             },
