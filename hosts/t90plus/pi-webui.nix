@@ -61,7 +61,7 @@
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
-      ExecStart = "${config.services.tailscale.package}/bin/tailscale serve --bg --https=443 http://127.0.0.1:3772";
+      ExecStart = "${config.services.tailscale.package}/bin/tailscale serve --bg --https=8443 http://127.0.0.1:3772";
     };
   };
 }
