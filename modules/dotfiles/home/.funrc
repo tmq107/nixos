@@ -42,38 +42,6 @@ awspro() {
   echo "Switched to $AWS_PROFILE and exported temporary keys."
 }
 
-mdr() {
-  local root="${1:-.}"
-  local selected
-  local -a files
-
-  selected=$(
-    fd --type f --hidden --follow --exclude .git \
-      -e md -e markdown . "$root" |
-      fzf \
-        --multi \
-        --bind 'ctrl-a:select-all' \
-        --header 'Ctrl-A: select all filtered files' \
-        --prompt="Markdown: " \
-        --preview 'bat --style=plain --color=always --line-range=:200 {}'
-  ) || return
-
-  [[ -z "$selected" ]] && return
-  files=("${(@f)selected}")
-  md "${files[@]}"
-}
-
-md() {
-  local file
-  local -a files
-
-  for file in "$@"; do
-    files+=("$(realpath "$file")") || return 1
-  done
-
-  command mdterm "${files[@]}"
-}
-
 nixs() {
   local packages=()
   for pkg in "$@"; do

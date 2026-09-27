@@ -1,0 +1,45 @@
+#!/run/current-system/sw/bin/zsh
+
+emulate -L zsh
+setopt local_options
+
+if (( $# == 0 )); then
+  exec mdterm
+fi
+
+if (( $# == 1 )) && [[ -d "$1" ]]; then
+  local root="$1"
+  local selected
+  local -a files
+
+  selected=$(
+    fd --type f --hidden --follow --exclude .git \
+      -e md -e markdown . "$root" |
+      fzf \
+        --multi \
+        --bind 'ctrl-a:select-all' \
+        --header 'Ctrl-A: select all filtered files' \
+        --prompt="Markdown: " \
+        --preview 'bat --style=plain --color=always --line-range=:200 {}'
+  ) || exit 0
+
+  [[ -z "$selected" ]] && exit 0
+  files=("${(@f)selected}")
+else
+  local -a files
+  local file
+  for file in "$@"; do
+    files+=("$file")
+  done
+fi
+
+local file
+local -a absolute_files
+for file in "${files[@]}"; do
+  absolute_files+=("$(realpath "$file")") || exit 1
+done
+files=("${absolute_files[@]}")
+
+local image_root="${files[1]:h}"
+cd "$image_root" || exit 1
+exec mdterm "${files[@]}"
