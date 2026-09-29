@@ -39,12 +39,24 @@ function M.setup(map)
         },
     })
 
+    -- Disable automatic Cargo checks to avoid blocking large Rust workspaces.
+    vim.lsp.config("rust_analyzer", {
+        settings = {
+            ["rust-analyzer"] = {
+                checkOnSave = {
+                    enable = false,
+                },
+            },
+        },
+    })
+
     -- Enable language servers installed by Nix.
     vim.lsp.enable({
         "lua_ls",
         "ts_ls",
         "pyright",
         "gopls",
+        "rust_analyzer",
         "yamlls",
         "markdown_oxide",
     })

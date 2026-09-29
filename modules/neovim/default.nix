@@ -12,6 +12,7 @@
       typescript-language-server
       yaml-language-server
       gopls
+      rust-analyzer
       terraform-ls
       markdown-oxide
 
