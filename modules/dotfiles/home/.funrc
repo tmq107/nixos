@@ -51,3 +51,4 @@ nixs() {
   nix shell "${packages[@]}"
 }
 
+

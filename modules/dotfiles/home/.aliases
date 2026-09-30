@@ -17,7 +17,7 @@ alias gcl='git clone'
 alias gc='git checkout'
 alias gb='git branch'
 alias gst='git status'
-alias gd='git diff'
+alias gd='git hdiff'
 alias gl='git log --oneline -5'
 alias gpl='git push --force-with-lease'
 

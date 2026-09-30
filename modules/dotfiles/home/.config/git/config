@@ -30,3 +30,6 @@
 	autoupdate = true
 [help]
 	autocorrect = prompt
+[alias]
+	hdiff = -c core.pager=\"hunk pager\" diff
+	hshow = -c core.pager=\"hunk pager\" show

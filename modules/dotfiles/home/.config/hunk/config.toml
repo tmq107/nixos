@@ -1,11 +1,35 @@
-theme = "catppuccin-mocha" # any built-in theme id, auto, or custom
-mode = "auto"        # auto, split, stack
-vcs = "git"          # git, jj, sl
+theme = "catppuccin-mocha"
+mode = "auto"
+vcs = "git"
+
 watch = false
 exclude_untracked = false
+
 line_numbers = true
+cursor_line = "row"
+tab_width = 4
+
 wrap_lines = true
+hunk_headers = true
+
+# spacing
+file_gap = 1
+hunk_gap = 1
+
+# scrolling
+wheel_scroll_lines = "auto"
+
 menu_bar = true
+animations = true
+sidebar = true
+
 agent_notes = false
+
+# Better if you copy code out of Hunk frequently
+copy_decorations = false
+
 prompt_save_view_preferences = true
 transparent_background = false
+
+# Optional — highlight code that was moved rather than added/deleted
+color_moved = true

@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+
+if ! command -v gh >/dev/null 2>&1; then
+  echo "ghrel requires GitHub CLI (gh) to be installed" >&2
+  exit 127
+fi
+
+repo="${1:-}"
+if [ -z "$repo" ]; then
+  echo "Usage: ghrel REPO [-v VERSION] [-o DIR]" >&2
+  exit 2
+fi
+shift
+
+version="latest"
+output_dir="$HOME/.local/bin"
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    -v|--version)
+      [ "$#" -ge 2 ] || { echo "Missing value for $1" >&2; exit 2; }
+      version="$2"
+      shift 2
+      ;;
+    -o|--output)
+      [ "$#" -ge 2 ] || { echo "Missing value for $1" >&2; exit 2; }
+      output_dir="$2"
+      shift 2
+      ;;
+    *)
+      echo "Usage: ghrel REPO [-v VERSION] [-o DIR]" >&2
+      exit 2
+      ;;
+  esac
+done
+
+os="$(uname -s | tr '[:upper:]' '[:lower:]')"
+arch="$(uname -m)"
+
+case "$arch" in
+  x86_64) arch="amd64" ;;
+  aarch64|arm64) arch="arm64" ;;
+esac
+
+if [ "$version" = "latest" ]; then
+  asset="$(gh release view -R "$repo" --json assets \
+    --jq ".assets[].name | select(test(\"${os}.*${arch}|${arch}.*${os}\"))" \
+    | head -n1)" || exit 1
+else
+  asset="$(gh release view "$version" -R "$repo" --json assets \
+    --jq ".assets[].name | select(test(\"${os}.*${arch}|${arch}.*${os}\"))" \
+    | head -n1)" || exit 1
+fi
+
+[ -n "$asset" ] || {
+  echo "No matching asset for ${os}/${arch} in ${version} release of ${repo}" >&2
+  exit 1
+}
+
+tmpdir="$(mktemp -d)" || exit 1
+trap 'rm -rf "$tmpdir"' EXIT
+
+if [ "$version" = "latest" ]; then
+  gh release download -R "$repo" -p "$asset" --clobber -D "$tmpdir" || exit 1
+else
+  gh release download "$version" -R "$repo" -p "$asset" --clobber -D "$tmpdir" || exit 1
+fi
+
+case "$asset" in
+  *.tar.gz|*.tgz) tar -xzf "$tmpdir/$asset" -C "$tmpdir" ;;
+  *.tar.xz)       tar -xJf "$tmpdir/$asset" -C "$tmpdir" ;;
+  *.tar.bz2)      tar -xjf "$tmpdir/$asset" -C "$tmpdir" ;;
+  *.zip)          unzip -q "$tmpdir/$asset" -d "$tmpdir" ;;
+  *)
+    echo "Unsupported archive format: $asset" >&2
+    exit 1
+    ;;
+esac || exit 1
+
+rm -f "$tmpdir/$asset"
+mkdir -p "$output_dir" || exit 1
+cp -a "$tmpdir"/. "$output_dir"/
