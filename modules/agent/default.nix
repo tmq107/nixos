@@ -4,10 +4,12 @@
   users.users.quanthai = {
     packages = with pkgs; [
       llm-agents.pi
-      #unstable.pi-coding-agent
 
       # nono sandbox
       llm-agents.nono
+
+      # terminal for AI
+      llm-agents.herdr
     ];
   };
 }

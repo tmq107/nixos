@@ -42,9 +42,6 @@
       unstable.docker-compose
       dive
 
-      # terminal for AI
-      llm-agents.herdr
-
       # file explorer
       yazi
     ];
