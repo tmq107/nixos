@@ -23,7 +23,7 @@ menu_bar = true
 animations = true
 sidebar = true
 
-agent_notes = false
+agent_notes = true
 
 # Better if you copy code out of Hunk frequently
 copy_decorations = false

@@ -1,5 +1,5 @@
 .POSIX:
-.PHONY: default build diff update fmt clean disko install update-input
+.PHONY: default build diff update fmt clean disko install update-input update-sofka
 
 default: fmt
 
@@ -23,6 +23,10 @@ fmt:
 
 update:
 	nix flake update
+	$(MAKE) update-sofka
+
+update-sofka:
+	python3 scripts/update-sofka.py
 
 update-input:
 	nix flake update $(input)

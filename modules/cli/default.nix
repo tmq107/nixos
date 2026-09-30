@@ -43,7 +43,10 @@
       dive
 
       # terminal for AI
-      unstable.herdr
+      llm-agents.herdr
+
+      # file explorer
+      yazi
     ];
   };
 }

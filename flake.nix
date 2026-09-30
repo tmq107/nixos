@@ -34,9 +34,6 @@
     llm-agents = {
       url = "github:numtide/llm-agents.nix";
     };
-    sofka = {
-      url = "github:nklmilojevic/sofka";
-    };
   };
 
   outputs =
@@ -49,7 +46,6 @@
       home-manager,
       nixos-wsl,
       llm-agents,
-      sofka,
     }:
     let
       systemModules = [
@@ -64,7 +60,7 @@
                 config = prev.config;
               };
               llm-agents = llm-agents.packages.${prev.stdenv.hostPlatform.system};
-              sofka = sofka.packages.${prev.stdenv.hostPlatform.system}.default;
+              sofka = prev.callPackage ./packages/sofka.nix { };
             })
           ];
         }
