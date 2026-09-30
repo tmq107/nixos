@@ -25,7 +25,7 @@ update:
 	nix flake update
 
 update-input:
-	nix flake lock --update-input "$(input)"
+	nix flake update $(input)
 
 clean:
 	nix-collect-garbage --delete-old --log-format bar
