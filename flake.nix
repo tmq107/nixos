@@ -91,9 +91,6 @@
             ./hosts/hp15a/hardware-configuration.nix
             ./hosts/hp15a
             ./modules/desktop
-            ./modules/cloud
-            ./modules/dev
-            ./modules/agent
             ./modules/games
           ];
         };
