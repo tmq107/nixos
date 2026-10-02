@@ -2,11 +2,11 @@
 
 stdenvNoCC.mkDerivation rec {
   pname = "sofka";
-  version = "0.29.6";
+  version = "0.29.7";
 
   src = fetchurl {
     url = "https://github.com/nklmilojevic/sofka/releases/download/v${version}/sofka-v${version}-x86_64-unknown-linux-musl.tar.gz";
-    hash = "sha256-sd5y2ZdhIqx3jFkDjqY8SBngVQkmIJ3j1+N1/VauWI0=";
+    hash = "sha256-Zd7pAzKGWtDlsRKUJ7iNZn6PvAAHTQgeIj1W34EDRXY=";
   };
 
   sourceRoot = ".";
