@@ -2,12 +2,8 @@
 local M = {}
 
 function M.setup()
-    -- Show status with automatic theme selection.
-    require("lualine").setup({
-        options = {
-            theme = "ayu_dark",
-        },
-    })
+    -- Detect the active colorscheme for status-line colors.
+    require("lualine").setup()
 end
 
 return M

@@ -41,13 +41,15 @@ vim.opt.scrolloff = math.max(0, math.floor(vim.o.lines / 2) - 3)
 -- Load filetype refresh and focus autocmds.
 require("config.autocmds")
 
--- Install theme before applying it.
+-- Install supported themes before applying the persisted selection.
 vim.pack.add({
     "https://github.com/catppuccin/nvim",
+    "https://github.com/rebelot/kanagawa.nvim",
+    "https://github.com/olimorris/onedarkpro.nvim",
 }, { confirm = false })
 
--- Use Catppuccin Mocha theme.
-vim.cmd.colorscheme("catppuccin-mocha")
+-- Load selected theme, falling back to Catppuccin Mocha.
+require("config.theme").load()
 
 -- Load remaining plugins after Neovim starts.
 vim.schedule(function()
@@ -83,7 +85,8 @@ vim.schedule(function()
     -- Share common mappings with plugin setup modules.
     local map = require("config.keymaps")
 
-    -- Configure search/replace and plugin features.
+    -- Configure theme switching, search/replace, and plugin features.
+    require("config.theme").setup(map)
     require("config.replace").setup(map)
     require("plugins.fzf").setup(map)
     require("plugins.explorer").setup(map)
