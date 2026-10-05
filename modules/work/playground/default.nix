@@ -15,6 +15,10 @@
       # Rust
       rustc
       cargo
+
+      # Zig
+      zig
+      zls
     ];
   };
 

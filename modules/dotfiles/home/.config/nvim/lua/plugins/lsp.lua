@@ -57,6 +57,7 @@ function M.setup(map)
         "pyright",
         "gopls",
         "rust_analyzer",
+        "zls",
         "yamlls",
         "markdown_oxide",
     })

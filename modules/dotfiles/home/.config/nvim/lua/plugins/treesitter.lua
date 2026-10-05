@@ -23,6 +23,7 @@ function M.setup()
         "terraform",
         "tsx",
         "typescript",
+        "zig",
         "yaml",
     })
 end
