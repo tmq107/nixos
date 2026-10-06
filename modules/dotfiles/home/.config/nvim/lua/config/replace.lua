@@ -143,19 +143,21 @@ function M.setup(map)
                 if replace == nil then
                     return
                 end
+                local current_folder = vim.fn.expand("%:p:h")
+                local workspace = vim.loop.cwd()
                 vim.ui.select({
                     {
-                        label = "Current folder",
-                        root = vim.fn.expand("%:p:h"),
+                        label = "Current folder (" .. current_folder .. ")",
+                        root = current_folder,
                         files = function()
-                            return files_in_folder(vim.fn.expand("%:p:h"))
+                            return files_in_folder(current_folder)
                         end,
                     },
                     {
-                        label = "Whole workspace",
-                        root = vim.loop.cwd(),
+                        label = "Whole workspace (" .. workspace .. ")",
+                        root = workspace,
                         files = function()
-                            return files_in_folder(vim.loop.cwd())
+                            return files_in_folder(workspace)
                         end,
                     },
                     {
