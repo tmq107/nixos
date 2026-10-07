@@ -64,6 +64,7 @@
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
 
         # UI / UX
+        "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
         "layout.css.devPixelsPerPx" = "1.20";
         "browser.display.base_font_size" = 18;
         "browser.tabs.tabMinWidth" = 0;
@@ -72,7 +73,9 @@
         "browser.urlbar.trimURLs" = false;
         "browser.urlbar.suggest.searches" = false;
         "browser.search.suggest.enabled" = false;
-        "browser.newtabpage.enabled" = false;
+        "browser.newtabpage.enabled" = true;
+        "browser.newtabpage.activity-stream.newtabWallpapers.user.enabled" = true;
+        "browser.newtabpage.activity-stream.newtabWallpapers.wallpaper" = "eclipse-time-lapse";
         "browser.startup.homepage" = "https://www.google.com";
         "browser.startup.page" = 1;
 
