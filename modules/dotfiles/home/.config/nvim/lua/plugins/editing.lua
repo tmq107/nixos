@@ -10,6 +10,9 @@ function M.setup(map)
     -- Insert matching brackets and quotes.
     require("nvim-autopairs").setup()
 
+    -- Toggle comments with gcc and gc.
+    require("mini.comment").setup()
+
     -- Show and navigate open buffers.
     require("bufferline").setup({
         options = {

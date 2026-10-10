@@ -43,8 +43,8 @@ map("n", "<C-a>", "ggVG", { desc = "Select All" })
 map("v", "<Tab>", ">gv", { desc = "Indent selection" })
 map("v", "<S-Tab>", "<gv", { desc = "Unindent selection" })
 
--- Toggle comments with Ctrl-Slash.
-map("n", "<C-_>", "gcc", { desc = "Toggle comment line", remap = true })
-map("v", "<C-_>", "gc", { desc = "Toggle comment selection", remap = true })
+-- Toggle comments with Ctrl-B, then Slash.
+map("n", "<C-b>/", "gcc", { desc = "Toggle comment line", remap = true })
+map("v", "<C-b>/", "gc", { desc = "Toggle comment selection", remap = true })
 
 return map
