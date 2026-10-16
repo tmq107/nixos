@@ -1,9 +1,11 @@
 { config, pkgs, ... }:
 
 {
+  environment.systemPackages = [ pkgs.llm-agents.t3code ];
+
   services.nginx = {
     enable = true;
-    virtualHosts.pi-webui = {
+    virtualHosts.t3code = {
       listen = [
         {
           addr = "127.0.0.1";
@@ -16,38 +18,37 @@
         }
       '';
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8787";
+        proxyPass = "http://127.0.0.1:3773";
         proxyWebsockets = true;
         extraConfig = ''
           proxy_set_header Host $host;
-          proxy_set_header X-Forwarded-Proto https;
+          proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
           proxy_read_timeout 1h;
         '';
       };
     };
   };
 
-  systemd.services.pi-webui = {
-    description = "Pi web UI";
-    wantedBy = [ "multi-user.target" ];
-    after = [ "network-online.target" ];
-    wants = [ "network-online.target" ];
-
-    serviceConfig = {
-      User = "quanthai";
+  home-manager.users.quanthai.systemd.user.services.t3code = {
+    Unit = {
+      Description = "T3 Code web server";
+      After = [ "default.target" ];
+    };
+    Install.WantedBy = [ "default.target" ];
+    Service = {
+      Environment = [
+        "PATH=/run/wrappers:/run/current-system/sw/bin:/home/quanthai/.local/bin"
+      ];
       WorkingDirectory = "/home/quanthai";
-      Environment = [ "HOME=/home/quanthai" ];
-      ConditionFileIsExecutable = "/home/quanthai/.local/bin/pi-webui";
-      # Zsh automatically loads .zshenv; source custom secret env explicitly.
-      ExecStart = "${pkgs.zsh}/bin/zsh -c 'source /home/quanthai/.zshenv_secret; exec /home/quanthai/.local/bin/pi-webui'";
+      ExecStart = "${pkgs.llm-agents.t3code}/bin/t3 serve --host 127.0.0.1 --port 3773";
       Restart = "on-failure";
       RestartSec = 5;
       UMask = "0077";
     };
   };
 
-  systemd.services.pi-webui-tailscale = {
-    description = "Pi web UI HTTPS access over Tailscale";
+  systemd.services.t3code-tailscale = {
+    description = "T3 Code HTTPS access over Tailscale";
     wantedBy = [ "multi-user.target" ];
     wants = [
       "tailscaled.service"

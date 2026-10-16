@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ./pi-webui.nix ];
+  imports = [ ./t3code.nix ];
 
   nixpkgs = {
     hostPlatform = "x86_64-linux";
