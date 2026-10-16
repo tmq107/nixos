@@ -37,7 +37,8 @@
     Install.WantedBy = [ "default.target" ];
     Service = {
       Environment = [
-        "PATH=/run/wrappers:/run/current-system/sw/bin:/home/quanthai/.local/bin"
+        "PATH=/run/wrappers:/run/current-system/sw/bin:/etc/profiles/per-user/quanthai/bin:/home/quanthai/.local/bin"
+        "PI_CODING_AGENT_DIR=/home/quanthai/personal/pi-agent/agent"
       ];
       WorkingDirectory = "/home/quanthai";
       ExecStart = "${pkgs.llm-agents.t3code}/bin/t3 serve --host 127.0.0.1 --port 3773";
