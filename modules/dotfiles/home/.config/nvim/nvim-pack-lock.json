@@ -25,6 +25,10 @@
       "rev": "44816af2465bb0a17ae0f1f2d8a4f9c3df524fcd",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
+    "grug-far.nvim": {
+      "rev": "bbde8ef5ae46ceee2c3bd8b21fc048c5f8ffbfc0",
+      "src": "https://github.com/MagicDuck/grug-far.nvim"
+    },
     "kanagawa-paper.nvim": {
       "rev": "ecf19801a2673054c19421d82b766f7641688320",
       "src": "https://github.com/thesimonho/kanagawa-paper.nvim"

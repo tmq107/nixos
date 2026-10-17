@@ -56,6 +56,7 @@ vim.schedule(function()
     vim.pack.add({
         -- File search and its Lua dependency.
         "https://github.com/ibhagwan/fzf-lua",
+        "https://github.com/MagicDuck/grug-far.nvim",
         "https://github.com/nvim-lua/plenary.nvim",
 
         -- File explorer and its UI dependencies.
@@ -87,8 +88,8 @@ vim.schedule(function()
 
     -- Configure theme switching, search/replace, and plugin features.
     require("config.theme").setup(map)
-    require("config.replace").setup(map)
     require("plugins.fzf").setup(map)
+    require("plugins.grug-far").setup(map)
     require("plugins.explorer").setup(map)
     require("plugins.ui").setup()
     require("plugins.lsp").setup(map)
