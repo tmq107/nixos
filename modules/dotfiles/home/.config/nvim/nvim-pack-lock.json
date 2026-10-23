@@ -29,6 +29,10 @@
       "rev": "bbde8ef5ae46ceee2c3bd8b21fc048c5f8ffbfc0",
       "src": "https://github.com/MagicDuck/grug-far.nvim"
     },
+    "indent-blankline.nvim": {
+      "rev": "f1e186e44d3b7f9ae918008e2c28ce37c6023d2d",
+      "src": "https://github.com/lukas-reineke/indent-blankline.nvim"
+    },
     "kanagawa-paper.nvim": {
       "rev": "ecf19801a2673054c19421d82b766f7641688320",
       "src": "https://github.com/thesimonho/kanagawa-paper.nvim"

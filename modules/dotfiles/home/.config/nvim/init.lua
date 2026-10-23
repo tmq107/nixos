@@ -72,6 +72,7 @@ vim.schedule(function()
         -- Editing, buffers, terminals, and indentation detection.
         "https://github.com/windwp/nvim-autopairs",
         "https://github.com/akinsho/bufferline.nvim",
+        "https://github.com/lukas-reineke/indent-blankline.nvim",
         "https://github.com/akinsho/toggleterm.nvim",
         "https://github.com/tpope/vim-sleuth",
 
@@ -92,6 +93,7 @@ vim.schedule(function()
     require("plugins.grug-far").setup(map)
     require("plugins.explorer").setup(map)
     require("plugins.ui").setup()
+    require("plugins.indent-blankline").setup()
     require("plugins.lsp").setup(map)
     require("plugins.editing").setup(map)
     require("plugins.navigation").setup(map)
