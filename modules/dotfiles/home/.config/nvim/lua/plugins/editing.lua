@@ -38,10 +38,6 @@ function M.setup(map)
         float_opts = { border = "curved" },
     })
     map("t", "<Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
-
-    -- Jump to first or last buffer line.
-    map("n", "<leader><Up>", "gg", { desc = "Go to first line" })
-    map("n", "<leader><Down>", "G", { desc = "Go to last line" })
 end
 
 return M
