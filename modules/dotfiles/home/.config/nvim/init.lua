@@ -36,7 +36,7 @@ vim.opt.incsearch = true
 vim.opt.termguicolors = true
 
 -- Keep cursor near screen center while moving.
-vim.opt.scrolloff = math.max(0, math.floor(vim.o.lines / 2) - 3)
+vim.o.scrolloff = 3
 
 -- Load filetype refresh and focus autocmds.
 require("config.autocmds")
