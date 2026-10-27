@@ -14,6 +14,17 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile", "BufEnter" }, {
 -- Reset cursorline focus handlers on reload.
 local cursorline = vim.api.nvim_create_augroup("CursorLineControl", { clear = true })
 
+-- Keep editor surfaces transparent across colorscheme changes.
+local transparent_background = vim.api.nvim_create_augroup("TransparentBackground", { clear = true })
+vim.api.nvim_create_autocmd("ColorScheme", {
+    group = transparent_background,
+    callback = function()
+        for _, group in ipairs({ "Normal", "NormalNC", "SignColumn", "EndOfBuffer", "NormalFloat", "FloatBorder", "FloatTitle" }) do
+            vim.api.nvim_set_hl(0, group, { bg = "NONE", ctermbg = "NONE" })
+        end
+    end,
+})
+
 -- Highlight cursor line in focused windows.
 vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
     group = cursorline,
