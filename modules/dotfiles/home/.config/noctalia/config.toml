@@ -1,0 +1,69 @@
+[wallpaper]
+directory = "~/personal/nixos/notes/img"
+transition = []
+
+[wallpaper.automation]
+enabled = true
+
+[theme]
+mode = "dark"
+source = "builtin"
+builtin = "Catppuccin"
+
+[theme.templates]
+enable_builtin_templates = true
+builtin_ids = ["niri"]
+
+[shell.animation]
+enabled = false
+
+[shell.panel]
+open_near_click_control_center = true
+
+[bar.main]
+position = "top"
+thickness = 38
+background_opacity = 0.9
+radius = 12
+margin_ends = 10
+margin_edge = 6
+padding = 12
+widget_spacing = 8
+font_weight = 600
+scale = 1.0
+shadow = true
+capsule = true
+capsule_fill = "#313244"
+capsule_foreground = "#cdd6f4"
+capsule_opacity = 0.82
+capsule_radius = 10
+start = ["launcher", "workspaces"]
+center = ["clock"]
+end = ["tray", "notifications", "network", "volume", "battery"]
+
+[widget.workspaces]
+capsule_radius = 10
+
+[widget.clock]
+format = "{:%a %d %b  %H:%M}"
+
+[widget.network]
+show_label = false
+
+[widget.volume]
+show_label = false
+capsule_fill = "#cba6f7"
+capsule_foreground = "#1e1e2e"
+
+[widget.battery]
+show_label = true
+
+[idle.behavior.lock]
+action = "lock"
+enabled = true
+timeout = 300
+
+[idle.behavior.screen-off]
+action = "screen_off"
+enabled = true
+timeout = 600

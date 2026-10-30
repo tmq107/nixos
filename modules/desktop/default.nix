@@ -4,6 +4,7 @@
   imports = [
     ./browser/firefox.nix
     ./cloudflare-warp.nix
+    ./niri.nix
   ];
 
   hardware.graphics = {
