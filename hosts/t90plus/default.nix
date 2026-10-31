@@ -35,6 +35,10 @@
     tailscale.enable = true;
   };
 
+  home-manager.users.quanthai.xdg.configFile."niri/outputs.kdl".text = ''
+    # Add this machine's output blocks here.
+  '';
+
   disko.devices.disk.main.device = "/dev/sda";
 
   networking = {

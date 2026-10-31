@@ -76,12 +76,5 @@ binds {
     Mod+V { toggle-window-floating; }
 }
 
-output "HDMI-A-1" {
-    position x=0 y=0
-}
-
-output "eDP-1" {
-    position x=2560 y=0
-}
-
+include optional=true "outputs.kdl"
 include optional=true "noctalia.kdl"
