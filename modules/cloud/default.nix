@@ -20,6 +20,7 @@
       kustomize
       k3d
       fluxcd
+      oras
 
       # IAC tool
       tenv
