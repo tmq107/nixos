@@ -1,9 +1,10 @@
 [wallpaper]
-directory = "~/personal/nixos/notes/img"
-transition = []
+directory = "~/personal/desktop-background/images"
+transition = ["fade"]
 
 [wallpaper.automation]
 enabled = true
+interval_seconds = 300
 
 [theme]
 mode = "dark"
