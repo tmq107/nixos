@@ -92,6 +92,7 @@
             ./hosts/hp15a
             ./modules/desktop
             ./modules/games
+            ./modules/agent
           ];
         };
         t90plus = nixpkgs.lib.nixosSystem {

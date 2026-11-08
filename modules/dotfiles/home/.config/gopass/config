@@ -1,0 +1,10 @@
+[mounts]
+	path = /home/quanthai/personal/password-store
+[recipients]
+	hash = 14896f6bc700647ee1118a56f3057eedaf60a68911a022bad13540bb0fbc5c2d
+[age]
+	agent-timeout = 0
+	agent-enabled = true
+[core]
+	autosync = false
+	autopush = false

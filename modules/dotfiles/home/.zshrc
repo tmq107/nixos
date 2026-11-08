@@ -43,9 +43,6 @@ fastfetch
 source $HOME/.aliases
 source $HOME/.funrc
 
-# source sensitive secret that not track in git
-[[ -f "$HOME/.zshenv_secret" ]] && source "$HOME/.zshenv_secret"
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 

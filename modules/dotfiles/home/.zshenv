@@ -20,3 +20,9 @@ export BASH_MAX_OUTPUT_LENGTH=15000
 # Kiro Home
 export KIRO_HOME="$HOME/.config/kiro"
 
+# Sensitive
+export CLOUDFLARE_API_TOKEN=$(gopass personal/cloudflare/token)
+export GMAIL_OAUTH_CLIENT_ID=$(gopass personal/gmail/oauth_id)
+export GMAIL_OAUTH_CLIENT_SECRET=$(gopass personal/gmail/oauth_secret)
+export MODELAPI_API_KEY=$(gopass personal/model/api_key)
+export MODELAPI_USAGE_API_KEY=$(gopass personal/model/usage_key)

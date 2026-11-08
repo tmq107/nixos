@@ -27,6 +27,9 @@
       # automation taskfile
       go-task
 
+      # password manager
+      unstable.gopass
+
       # zsh support
       zsh-completions
 
