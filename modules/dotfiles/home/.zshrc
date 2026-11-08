@@ -42,6 +42,7 @@ SAVEHIST=10000
 fastfetch
 source $HOME/.aliases
 source $HOME/.funrc
+source $HOME/.zshenv
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
