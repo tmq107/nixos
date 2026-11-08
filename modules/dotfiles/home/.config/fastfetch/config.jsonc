@@ -1,30 +1,26 @@
 {
   "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
   "logo": {
-    "type": "builtin",
-    "source": "nixos",
-    "color": {
-      "1": "blue",
-      "2": "cyan"
-    },
+    "type": "auto",
+    "source": "~/.config/fastfetch/logo/nixos-medium.txt",
+    "color": { "1": "#4d6fb7", "2": "#77b6e1" },
     "padding": {
-      "right": 3
+      "top": 1,
+      "left": 2
     }
   },
   "display": {
-    "separator": ": "
+    "separator": "  ",
+    "key": {
+      "width": 12
+    }
   },
   "modules": [
-    "title",
+    "break",
     {
-      "type": "separator",
-      "string": "-"
+      "type": "distro",
+      "format": "{pretty-name}"
     },
-    {
-      "type": "os",
-      "format": "{pretty-name} {arch}"
-    },
-    "host",
     {
       "type": "kernel",
       "format": "{release}"
@@ -32,22 +28,13 @@
     "uptime",
     "packages",
     {
+      "type": "users",
+      "format": "{name}"
+    },
+    {
       "type": "shell",
       "format": "{pretty-name} {version}"
     },
-    {
-      "type": "display",
-      "format": "{width}x{height}"
-    },
-    {
-      "type": "de",
-      "format": "{pretty-name} {version}"
-    },
-    "wmtheme",
-    "theme",
-    "icons",
-    "terminal",
-    "terminalfont",
     {
       "type": "cpu",
       "temp": false,
