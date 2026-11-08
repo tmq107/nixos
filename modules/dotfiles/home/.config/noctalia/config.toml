@@ -24,7 +24,7 @@ floating_offset = 8
 open_near_click_control_center = true
 
 [bar.main]
-position = "left"
+position = "top"
 reserve_space = true
 thickness = 38
 background_opacity = 0.9
@@ -41,29 +41,56 @@ capsule_fill = "#313244"
 capsule_foreground = "#cdd6f4"
 capsule_opacity = 0.82
 capsule_radius = 10
-start = ["launcher", "workspaces"]
-center = ["clock"]
-end = ["tray", "notifications", "network", "volume", "battery"]
+start = ["launcher", "wallpaper", "workspaces"]
+center = ["media", "clock"] 
+end = ["tray", "notifications", "network", "bluetooth", "volume", "battery", "control-center"]
 
 [widget.workspaces]
 capsule_radius = 10
+capsule_fill = "#b4befe" # Mocha Lavender for active/highlighted workspace
+capsule_foreground = "#1e1e2e"
 
 [widget.clock]
-format = "{:%a %d %b ---- %H:%M}"
+format = "{:%a %d %b %H:%M}"
 
 [widget.network]
 show_label = false
+capsule_fill = "#89b4fa" # Mocha Blue
+capsule_foreground = "#1e1e2e" # Mocha Crust/Base
 
 [widget.bluetooth]
 show_label = false
+capsule_fill = "#74c7ec" # Catppuccin Sapphire
+capsule_foreground = "#1e1e2e"
 
 [widget.volume]
 show_label = false
-capsule_fill = "#cba6f7"
+capsule_fill = "#cba6f7" # Mocha Mauve
+capsule_foreground = "#1e1e2e"
+
+[widget.control-center]
+show_label = false
+capsule_fill = "#f2cdcd" # Catppuccin Flamingo
 capsule_foreground = "#1e1e2e"
 
 [widget.battery]
 show_label = true
+capsule_fill = "#a6e3a1" # Default Mocha Green
+capsule_foreground = "#1e1e2e"
+
+[widget.battery.states.warning]
+threshold = 20
+capsule_fill = "#f9e2af" # Mocha Yellow
+
+[widget.battery.states.critical]
+threshold = 10
+capsule_fill = "#f38ba8" # Mocha Red
+
+[widget.media]
+artist_first = true
+art_size     = 24
+hide_when_no_media = true
+hide_when_idle = true
 
 [idle.behavior.lock]
 action = "lock"

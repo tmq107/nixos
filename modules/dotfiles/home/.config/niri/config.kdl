@@ -37,6 +37,8 @@ animations {
 
 window-rule {
     match is-active=false
+    geometry-corner-radius 12
+    clip-to-geometry true
     opacity 0.85
     background-effect {
         blur true
@@ -123,4 +125,5 @@ binds {
 }
 
 include optional=true "outputs.kdl"
-include optional=true "noctalia.kdl"
+
+include "noctalia.kdl"
