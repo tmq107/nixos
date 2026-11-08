@@ -100,7 +100,14 @@ gopass git status
 
 Expected root path: `/home/quanthai/personal/password-store` (or the equivalent under your `$HOME`).
 
-> If you already have a store under `~/.local/share/gopass/stores/root`, back it up and reconcile the gopass root-store configuration rather than blindly overwriting it. `--path` is the right way to choose the path **during new initialization**.
+### If you want to clone password-store repo to other machines, please use below command
+
+```bash
+gopass clone \
+  --crypto age \
+  --path "$HOME/personal/password-store" \
+  https://git.mquanthai.com/tmq107/password-store.git
+```
 
 ## 5. Create a private, EMPTY Forgejo repository
 
