@@ -10,3 +10,5 @@
 	autopush = false
 [mounts "local"]
 	path = ~/personal/password-local
+[recipients "local"]
+	hash = 14896f6bc700647ee1118a56f3057eedaf60a68911a022bad13540bb0fbc5c2d
