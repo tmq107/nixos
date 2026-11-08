@@ -19,10 +19,12 @@ builtin_ids = ["niri"]
 enabled = false
 
 [shell.panel]
+control_center_placement = "floating"
+floating_offset = 8
 open_near_click_control_center = true
 
 [bar.main]
-position = "top"
+position = "left"
 reserve_space = true
 thickness = 38
 background_opacity = 0.9
@@ -47,9 +49,12 @@ end = ["tray", "notifications", "network", "volume", "battery"]
 capsule_radius = 10
 
 [widget.clock]
-format = "{:%a %d %b  %H:%M}"
+format = "{:%a %d %b ---- %H:%M}"
 
 [widget.network]
+show_label = false
+
+[widget.bluetooth]
 show_label = false
 
 [widget.volume]

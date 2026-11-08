@@ -27,7 +27,19 @@
     dbus.enable = true;
     gvfs.enable = true;
     xserver.enable = true;
-    displayManager.sddm.enable = true;
+    displayManager.sddm = {
+      enable = true;
+      theme = "catppuccin-mocha-mauve";
+      extraPackages = [
+        (pkgs.catppuccin-sddm.override {
+          flavor = "mocha";
+          accent = "mauve";
+          background = "/home/quanthai/personal/desktop-background/images/img_10.jpg";
+          loginBackground = true;
+        })
+      ];
+    };
+    displayManager.defaultSession = "niri";
     desktopManager.plasma6.enable = true;
 
     pipewire = {
@@ -56,6 +68,14 @@
 
   environment = {
     systemPackages = with pkgs; [
+      # SDDM theme
+      (catppuccin-sddm.override {
+        flavor = "mocha";
+        accent = "mauve";
+        background = "/home/quanthai/personal/desktop-background/images/img_10.jpg";
+        loginBackground = true;
+      })
+
       # KDE default
       kdePackages.ark
       kdePackages.dolphin
