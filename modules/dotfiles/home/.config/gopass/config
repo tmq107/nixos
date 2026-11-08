@@ -8,3 +8,5 @@
 [core]
 	autosync = false
 	autopush = false
+[mounts "local"]
+	path = ~/personal/password-local
