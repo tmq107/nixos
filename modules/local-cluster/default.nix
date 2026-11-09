@@ -27,13 +27,13 @@
         let
           start-k3d = pkgs.writeShellScript "start-k3d-cluster" ''
             set -euo pipefail
-            echo "$(date): Starting k3d cluster 'local'"
+            echo "$(date): Starting k3d cluster 'prod'"
 
-            if ${pkgs.k3d}/bin/k3d cluster list --no-headers | ${pkgs.gnugrep}/bin/grep -q "^local"; then
-              echo "$(date): Cluster 'local' exists, starting it"
-              ${pkgs.k3d}/bin/k3d cluster start local
+            if ${pkgs.k3d}/bin/k3d cluster list --no-headers | ${pkgs.gnugrep}/bin/grep -q "^prod"; then
+              echo "$(date): Cluster 'prod' exists, starting it"
+              ${pkgs.k3d}/bin/k3d cluster start prod
             else
-              echo "$(date): Cluster 'local' does not exist"
+              echo "$(date): Cluster 'prod' does not exist"
               exit 1
             fi
 
@@ -46,13 +46,13 @@
         let
           stop-k3d = pkgs.writeShellScript "stop-k3d-cluster" ''
             set -euo pipefail
-            echo "$(date): Stopping k3d cluster 'local'"
+            echo "$(date): Stopping k3d cluster 'prod'"
 
-            if ${pkgs.k3d}/bin/k3d cluster list --no-headers | ${pkgs.gnugrep}/bin/grep -q "^local"; then
-              ${pkgs.k3d}/bin/k3d cluster stop local
+            if ${pkgs.k3d}/bin/k3d cluster list --no-headers | ${pkgs.gnugrep}/bin/grep -q "^prod"; then
+              ${pkgs.k3d}/bin/k3d cluster stop prod
               echo "$(date): k3d cluster stop complete"
             else
-              echo "$(date): Cluster 'local' does not exist"
+              echo "$(date): Cluster 'prod' does not exist"
             fi
           '';
         in
