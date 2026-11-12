@@ -65,11 +65,16 @@ in
     wantedBy = [ "multi-user.target" ];
     wants = [ "network-online.target" ];
     after = [ "network-online.target" ];
+    path = [
+      "/run/wrappers"
+      "/run/current-system/sw"
+      "/etc/profiles/per-user/quanthai"
+      "/home/quanthai/.local"
+    ];
     environment = {
       HOME = "/home/quanthai";
       XDG_CONFIG_HOME = "/home/quanthai/.config";
       XDG_RUNTIME_DIR = "/run/t3code";
-      PATH = "/run/wrappers:/run/current-system/sw/bin:/etc/profiles/per-user/quanthai/bin:/home/quanthai/.local/bin";
       PI_CODING_AGENT_DIR = "/home/quanthai/personal/pi-agent/agent";
     };
     serviceConfig = {
