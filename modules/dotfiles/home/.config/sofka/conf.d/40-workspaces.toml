@@ -50,3 +50,20 @@ namespace = "flux-system"
 name = "HelmRepositories"
 resource = "helmrepositories.source.toolkit.fluxcd.io"
 namespace = "flux-system"
+
+## ArgoCD
+[[workspaces]]
+name = "argocd"
+
+[[workspaces.views]]
+name = "Applications"
+resource = "applications.argoproj.io"
+namespace = "all"
+
+[[workspaces.views]]
+name = "ApplicationsSets"
+resource = "applicationsets.argoproj.io"
+namespace = "all"
+
+
+

@@ -1,3 +1,10 @@
+# Load secrets in interactive shells so PIN prompts appear inside the terminal.
+export CLOUDFLARE_API_TOKEN=$(gopass personal/cloudflare/token)
+export GMAIL_OAUTH_CLIENT_ID=$(gopass personal/gmail/oauth_id)
+export GMAIL_OAUTH_CLIENT_SECRET=$(gopass personal/gmail/oauth_secret)
+export MODELAPI_API_KEY=$(gopass personal/model/api_key)
+export MODELAPI_USAGE_API_KEY=$(gopass personal/model/usage_key)
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -42,7 +49,6 @@ SAVEHIST=10000
 fastfetch
 source $HOME/.aliases
 source $HOME/.funrc
-source $HOME/.zshenv
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
