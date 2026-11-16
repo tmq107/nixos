@@ -26,6 +26,7 @@
 
   virtualisation.incus = {
     enable = true;
+    ui.enable = true;
     preseed = {
       storage_pools = [
         {
