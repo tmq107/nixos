@@ -15,4 +15,49 @@
   };
 
   services.tailscale.enable = true;
+
+  networking.nftables.enable = true;
+
+  users.users.quanthai.extraGroups = [ "incus-admin" ];
+
+  virtualisation.incus = {
+    enable = true;
+    preseed = {
+      storage_pools = [
+        {
+          name = "default";
+          driver = "dir";
+          config.source = "/var/lib/incus/storage-pools/default";
+        }
+      ];
+      networks = [
+        {
+          name = "incusbr0";
+          type = "bridge";
+          config = {
+            "ipv4.address" = "10.0.100.1/24";
+            "ipv4.nat" = "true";
+          };
+        }
+      ];
+      profiles = [
+        {
+          name = "default";
+          config."security.secureboot" = "false";
+          devices = {
+            root = {
+              type = "disk";
+              path = "/";
+              pool = "default";
+            };
+            eth0 = {
+              type = "nic";
+              name = "eth0";
+              network = "incusbr0";
+            };
+          };
+        }
+      ];
+    };
+  };
 }
