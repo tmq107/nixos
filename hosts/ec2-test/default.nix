@@ -12,7 +12,7 @@
       trustedInterfaces = [ "tailscale0" ];
       allowedUDPPorts = [ config.services.tailscale.port ];
       interfaces.incusbr0 = {
-        allowedTCPPorts = [ 53 ];
+        allowedTCPPorts = [ 53 22 ];
         allowedUDPPorts = [ 53 67 ];
       };
     };
