@@ -94,6 +94,14 @@
             ./modules/games
           ];
         };
+        ec2-test = nixpkgs.lib.nixosSystem {
+          modules = systemModules ++ [
+            ./hosts/ec2-test
+            ./modules/cloud
+            ./modules/dev
+            ./modules/agent
+          ];
+        };
         t90plus = nixpkgs.lib.nixosSystem {
           modules = baseModules ++ [
             ./hosts/t90plus
