@@ -39,7 +39,8 @@
           name = "incusbr0";
           type = "bridge";
           config = {
-            "ipv4.address" = "10.0.100.1/24";
+            "ipv4.address" = "auto";
+            "ipv6.address" = "auto";
             "ipv4.nat" = "true";
             "ipv4.dhcp" = "true";
             "dns.nameservers" = "1.1.1.1,1.0.0.1";
