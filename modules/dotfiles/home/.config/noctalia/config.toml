@@ -50,6 +50,10 @@ capsule_radius = 10
 capsule_fill = "#b4befe" # Mocha Lavender for active/highlighted workspace
 capsule_foreground = "#1e1e2e"
 
+[widget.workspaces.actions]
+scroll_up = "exec niri msg action focus-workspace-up"
+scroll_down = "exec niri msg action focus-workspace-down"
+
 [widget.clock]
 format = "{:%a %d %b %H:%M}"
 

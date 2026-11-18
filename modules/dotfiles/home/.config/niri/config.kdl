@@ -46,9 +46,10 @@ window-rule {
 }
 
 binds {
-    Mod+D { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
-    Mod+B { spawn "firefox"; }
-    Mod+Return { spawn "kitty"; }
+    Mod+D       hotkey-overlay-title="App Launcher"         { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
+    Mod+B       hotkey-overlay-title="Browser: Firfox"      { spawn "firefox"; }
+    Mod+Return  hotkey-overlay-title="Terminal: kitty"      { spawn "kitty"; }
+    Mod+M       hotkey-overlay-title="System Monitor: btop" { spawn-sh "kitty --single-instance --class btop -e btop"; }
     Mod+Shift+Slash { show-hotkey-overlay; }
     Mod+Shift+Q { close-window; }
     Mod+Ctrl+E { quit; }

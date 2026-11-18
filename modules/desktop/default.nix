@@ -29,15 +29,8 @@
     xserver.enable = true;
     displayManager.sddm = {
       enable = true;
-      theme = "catppuccin-mocha-mauve";
-      extraPackages = [
-        (pkgs.catppuccin-sddm.override {
-          flavor = "mocha";
-          accent = "mauve";
-          background = "/home/quanthai/personal/desktop-background/images/img_10.jpg";
-          loginBackground = true;
-        })
-      ];
+      theme = "sddm-astronaut-theme";
+      extraPackages = [ pkgs.kdePackages.qtmultimedia ];
     };
     displayManager.defaultSession = "niri";
     desktopManager.plasma6.enable = true;
@@ -69,12 +62,7 @@
   environment = {
     systemPackages = with pkgs; [
       # SDDM theme
-      (catppuccin-sddm.override {
-        flavor = "mocha";
-        accent = "mauve";
-        background = "/home/quanthai/personal/desktop-background/images/img_10.jpg";
-        loginBackground = true;
-      })
+      (sddm-astronaut.override { embeddedTheme = "astronaut"; })
 
       # KDE default
       kdePackages.ark
