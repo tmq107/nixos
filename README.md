@@ -39,7 +39,7 @@ NixOS flake configuration for WSL, laptop, and local cluster machines.
 Install required tools:
 
 ```bash
-nix-shell -p git gnumake neovim disko
+nix-shell -p git gnumake neovim disko python3
 ```
 
 Build and activate a host:
