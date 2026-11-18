@@ -1,8 +1,5 @@
 { config, pkgs, ... }:
 
-let
-  astronautTheme = pkgs.sddm-astronaut.override { embeddedTheme = "astronaut"; };
-in
 {
   imports = [
     ./browser/firefox.nix
@@ -32,8 +29,13 @@ in
     xserver.enable = true;
     displayManager.sddm = {
       enable = true;
-      theme = "sddm-astronaut-theme";
-      extraPackages = [ astronautTheme pkgs.kdePackages.qtmultimedia ];
+      theme = "catppuccin-macchiato-mauve";
+      extraPackages = [
+        (pkgs.catppuccin-sddm.override {
+          flavor = "macchiato";
+          accent = "mauve";
+        })
+      ];
     };
     displayManager.defaultSession = "niri";
     desktopManager.plasma6.enable = true;
@@ -65,7 +67,10 @@ in
   environment = {
     systemPackages = with pkgs; [
       # SDDM theme
-      astronautTheme
+      (catppuccin-sddm.override {
+        flavor = "macchiato";
+        accent = "mauve";
+      })
 
       # KDE default
       kdePackages.ark
