@@ -3,8 +3,14 @@
 {
   networking.nftables.enable = true;
   networking.firewall.interfaces.incusbr0 = {
-    allowedTCPPorts = [ 22 53 ];
-    allowedUDPPorts = [ 53 67 ];
+    allowedTCPPorts = [
+      22
+      53
+    ];
+    allowedUDPPorts = [
+      53
+      67
+    ];
   };
 
   users.users.quanthai.extraGroups = [ "incus-admin" ];

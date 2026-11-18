@@ -1,4 +1,10 @@
-{ lib, stdenvNoCC, fetchurl, gnutar, gzip }:
+{
+  lib,
+  stdenvNoCC,
+  fetchurl,
+  gnutar,
+  gzip,
+}:
 
 stdenvNoCC.mkDerivation rec {
   pname = "sofka";
@@ -10,7 +16,10 @@ stdenvNoCC.mkDerivation rec {
   };
 
   sourceRoot = ".";
-  nativeBuildInputs = [ gnutar gzip ];
+  nativeBuildInputs = [
+    gnutar
+    gzip
+  ];
   dontBuild = true;
 
   installPhase = ''
@@ -24,6 +33,9 @@ stdenvNoCC.mkDerivation rec {
     homepage = "https://github.com/nklmilojevic/sofka";
     mainProgram = "sofka";
     platforms = [ "x86_64-linux" ];
-    license = with lib.licenses; [ mit asl20 ];
+    license = with lib.licenses; [
+      mit
+      asl20
+    ];
   };
 }

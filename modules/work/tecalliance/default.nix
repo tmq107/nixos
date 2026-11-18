@@ -2,16 +2,15 @@
 
 let
   dotfilesDir = builtins.getEnv "DOTFILES_DIR";
-  repoRoot =
-    if dotfilesDir != ""
-    then dotfilesDir
-    else "/home/quanthai/personal/nixos";
+  repoRoot = if dotfilesDir != "" then dotfilesDir else "/home/quanthai/personal/nixos";
 
   azureDevopsMcp = pkgs.writeShellScriptBin "azure-devops-mcp" ''
-    export LD_LIBRARY_PATH="${pkgs.lib.makeLibraryPath [
-      pkgs.libsecret
-      pkgs.glib
-    ]}"
+    export LD_LIBRARY_PATH="${
+      pkgs.lib.makeLibraryPath [
+        pkgs.libsecret
+        pkgs.glib
+      ]
+    }"
 
     exec ${pkgs.nodejs}/bin/npx \
       -y @azure-devops/mcp "$@"
@@ -40,20 +39,17 @@ in
       home.file = {
         ".local/bin/tec_alarm" = {
           force = true;
-          source = config.lib.file.mkOutOfStoreSymlink
-            "${repoRoot}/modules/work/tecalliance/scripts/tec_alarm";
+          source = config.lib.file.mkOutOfStoreSymlink "${repoRoot}/modules/work/tecalliance/scripts/tec_alarm";
         };
 
         ".local/bin/tec_deploy" = {
           force = true;
-          source = config.lib.file.mkOutOfStoreSymlink
-            "${repoRoot}/modules/work/tecalliance/scripts/tec_deploy";
+          source = config.lib.file.mkOutOfStoreSymlink "${repoRoot}/modules/work/tecalliance/scripts/tec_deploy";
         };
 
         ".local/bin/tec_snapshot" = {
           force = true;
-          source = config.lib.file.mkOutOfStoreSymlink
-            "${repoRoot}/modules/work/tecalliance/scripts/tec_snapshot";
+          source = config.lib.file.mkOutOfStoreSymlink "${repoRoot}/modules/work/tecalliance/scripts/tec_snapshot";
         };
       };
     };

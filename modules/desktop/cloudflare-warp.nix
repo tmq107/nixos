@@ -10,7 +10,10 @@
 
   systemd.services.warp = {
     description = "Cloudflare WARP connection";
-    after = [ "cloudflare-warp.service" "network-online.target" ];
+    after = [
+      "cloudflare-warp.service"
+      "network-online.target"
+    ];
     requires = [ "cloudflare-warp.service" ];
 
     serviceConfig = {

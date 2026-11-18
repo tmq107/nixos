@@ -4,10 +4,9 @@ let
   username = "quanthai";
   sourceRoot = ./home;
 
-  discoveredFiles = map (
-    path: lib.removePrefix "./" (lib.path.removePrefix sourceRoot path)
-  ) (lib.filesystem.listFilesRecursive sourceRoot);
-
+  discoveredFiles = map (path: lib.removePrefix "./" (lib.path.removePrefix sourceRoot path)) (
+    lib.filesystem.listFilesRecursive sourceRoot
+  );
 
 in
 {

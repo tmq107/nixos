@@ -11,7 +11,7 @@ NixOS flake configuration for WSL, laptop, and local cluster machines.
 ├── hosts/                    # Host-specific configuration
 │   ├── wsl/
 │   ├── hp15a/
-│   └── t90plus/
+│   └── ....
 ├── modules/                  # Reusable system and user modules
 │   ├── agent/                # AI agent tools
 │   ├── cli/                  # CLI tools
@@ -22,11 +22,7 @@ NixOS flake configuration for WSL, laptop, and local cluster machines.
 │   ├── disk/                 # Disko configuration
 │   ├── dotfiles/             # Home Manager dotfile symlinks
 │   │   └── home/             # User dotfiles and config files
-│   ├── games/                # Games and gaming tools
-│   ├── local-cluster/        # k3d and cluster-machine power settings
-│   ├── neovim/               # Neovim and language servers
-│   ├── terminal/             # Terminal configuration
-│   └── work/                 # Work-specific modules
+│   ├── ....
 ├── notes/                    # Personal notes
 ├── scripts/                  # Helper scripts
 │   └── build.py              # Rebuild wrapper and preflight checks
@@ -46,8 +42,6 @@ Build and activate a host:
 
 ```bash
 make build host=wsl
-make build host=hp15a
-make build host=t90plus
 ```
 
 The build wrapper checks these files before rebuilding:
