@@ -84,6 +84,7 @@
             ./modules/cloud
             ./modules/dev
             ./modules/agent
+            ./modules/incus
           ];
         };
         hp15a = nixpkgs.lib.nixosSystem {

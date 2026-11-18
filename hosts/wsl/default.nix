@@ -1,7 +1,9 @@
 { lib, pkgs, ... }:
 
 {
-  imports = [ ./vscode.nix ];
+  imports = [
+    ./vscode.nix
+  ];
 
   environment.systemPackages = with pkgs; [
     wsl-vpnkit
