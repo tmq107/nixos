@@ -47,6 +47,15 @@
 
       # file explorer
       yazi
+
+      # send file
+      ffsend
+
+      # systemctl tui
+      unstable.systemctl-tui
+
+      # json tui query
+      fx
     ];
   };
 }
