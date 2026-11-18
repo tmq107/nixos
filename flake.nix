@@ -84,6 +84,7 @@
             ./modules/cloud
             ./modules/dev
             ./modules/agent
+            ./modules/incus
           ];
         };
         hp15a = nixpkgs.lib.nixosSystem {
@@ -92,14 +93,6 @@
             ./hosts/hp15a
             ./modules/desktop
             ./modules/games
-          ];
-        };
-        ec2-test = nixpkgs.lib.nixosSystem {
-          modules = systemModules ++ [
-            ./hosts/ec2-test
-            ./modules/cloud
-            ./modules/dev
-            ./modules/agent
           ];
         };
         t90plus = nixpkgs.lib.nixosSystem {

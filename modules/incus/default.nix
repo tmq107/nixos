@@ -1,26 +1,11 @@
-{ config, modulesPath, ... }:
+{ ... }:
 
 {
-  imports = [ "${modulesPath}/virtualisation/amazon-image.nix" ];
-
-  nixpkgs.hostPlatform = "x86_64-linux";
-
-  networking = {
-    hostName = "ec2-test";
-    firewall = {
-      enable = true;
-      trustedInterfaces = [ "tailscale0" ];
-      allowedUDPPorts = [ config.services.tailscale.port ];
-      interfaces.incusbr0 = {
-        allowedTCPPorts = [ 53 22 ];
-        allowedUDPPorts = [ 53 67 ];
-      };
-    };
-  };
-
-  services.tailscale.enable = true;
-
   networking.nftables.enable = true;
+  networking.firewall.interfaces.incusbr0 = {
+    allowedTCPPorts = [ 22 53 ];
+    allowedUDPPorts = [ 53 67 ];
+  };
 
   users.users.quanthai.extraGroups = [ "incus-admin" ];
 
@@ -40,7 +25,6 @@
           type = "bridge";
           config = {
             "ipv4.address" = "auto";
-            "ipv6.address" = "auto";
             "ipv4.nat" = "true";
             "ipv4.dhcp" = "true";
             "dns.nameservers" = "1.1.1.1,1.0.0.1";
