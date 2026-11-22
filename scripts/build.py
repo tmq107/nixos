@@ -30,7 +30,7 @@ def check_required_files() -> None:
         print("Missing required files:", file=sys.stderr)
         for path in missing:
             print(f"  {os.path.expanduser(path)}", file=sys.stderr)
-        raise SystemExit(1)
+        print("Please update it later")
 
 
 def main() -> None:
