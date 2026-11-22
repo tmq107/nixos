@@ -4,3 +4,9 @@ resource = "pods"
 namespace = "all"
 filter = "status!=Running"
 sort = "RESTARTS:desc"
+
+[[bookmarks]]
+name = "secret bao control"
+resource = "secrets"
+namespace = "all"
+filter = "-l openbao-injection=enabled"
