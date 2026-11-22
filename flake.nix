@@ -68,7 +68,6 @@
 
       baseModules = systemModules ++ [
         ./modules/dotfiles
-        ./modules/terminal/kitty.nix
         ./modules/cli
         ./modules/neovim
       ];
@@ -85,6 +84,7 @@
             ./modules/dev
             ./modules/agent
             ./modules/incus
+            ./modules/desktop/kitty.nix
           ];
         };
         hp15a = nixpkgs.lib.nixosSystem {
@@ -98,19 +98,17 @@
         t90plus = nixpkgs.lib.nixosSystem {
           modules = baseModules ++ [
             ./hosts/t90plus
-            ./modules/desktop
             ./modules/disk
-            ./modules/local-cluster
             ./modules/cloud
             ./modules/dev
             ./modules/agent
+            ./modules/incus
           ];
         };
 
         t90plus-install = nixpkgs.lib.nixosSystem {
           modules = systemModules ++ [
             ./hosts/t90plus
-            ./modules/desktop
             ./modules/disk
           ];
         };
