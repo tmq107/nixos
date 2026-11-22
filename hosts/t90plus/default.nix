@@ -1,7 +1,10 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ./t3code.nix ];
+  systemd.targets.sleep.enable = false;
+  systemd.targets.suspend.enable = false;
+  systemd.targets.hibernate.enable = false;
+  systemd.targets.hybrid-sleep.enable = false;
 
   nixpkgs = {
     hostPlatform = "x86_64-linux";
@@ -34,10 +37,6 @@
   services = {
     tailscale.enable = true;
   };
-
-  home-manager.users.quanthai.xdg.configFile."niri/outputs.kdl".text = ''
-    # Add this machine's output blocks here.
-  '';
 
   disko.devices.disk.main.device = "/dev/sda";
 

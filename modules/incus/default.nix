@@ -40,7 +40,12 @@
       profiles = [
         {
           name = "default";
-          config."security.secureboot" = "false";
+          config = {
+            "security.secureboot" = "false";
+            "boot.autostart" = "true";
+            "boot.stop.priority" = "10";
+            "boot.host_shutdown_timeout" = "120";
+          };
           devices = {
             root = {
               type = "disk";

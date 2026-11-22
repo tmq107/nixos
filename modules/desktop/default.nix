@@ -5,6 +5,7 @@
     ./browser/firefox.nix
     ./cloudflare-warp.nix
     ./niri.nix
+    ./kitty.nix
   ];
 
   hardware.graphics = {
