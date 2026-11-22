@@ -10,7 +10,7 @@
       btop
       lsof
       duf
-      unstable.witr
+      witr
 
       # find file or grep
       fzf
@@ -40,6 +40,7 @@
       # jq / yq support
       jq
       yq-go
+      fx
 
       # docker support tool
       unstable.docker-compose
@@ -54,8 +55,8 @@
       # systemctl tui
       unstable.systemctl-tui
 
-      # json tui query
-      fx
+      # ssh private tool
+      tailscale
     ];
   };
 }

@@ -25,9 +25,6 @@
       # IAC tool
       tenv
       unstable.graphviz
-
-      # ssh private tool
-      unstable.tailscale
     ];
   };
 }
