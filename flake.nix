@@ -103,6 +103,7 @@
             ./modules/dev
             ./modules/agent
             ./modules/incus
+            ./modules/t3code
           ];
         };
 
