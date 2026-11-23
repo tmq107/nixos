@@ -95,6 +95,11 @@
     };
 
     programs = {
+      direnv = {
+        enable = true;
+        silent = true;
+      };
+
       zsh = {
         enable = true;
         enableCompletion = true;

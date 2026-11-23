@@ -54,14 +54,7 @@
     bluetooth.enable = true;
   };
 
-  programs = {
-    direnv = {
-      enable = true;
-      silent = true;
-    };
-
-    virt-manager.enable = true;
-  };
+  programs.virt-manager.enable = true;
 
   security.sudo.wheelNeedsPassword = true;
 

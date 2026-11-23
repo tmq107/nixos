@@ -27,7 +27,6 @@ in
 
       libsecret
       glib
-      direnv
       pre-commit
       unstable.kiro-cli
     ];
