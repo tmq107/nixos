@@ -2,6 +2,7 @@
 alias k='kubectl'
 alias kns='kubectl config set-context --current --namespace '
 alias kimages='kubectl get pods -o jsonpath="{range .items[*]}{range .spec.initContainers[*]}{.image}{\"\n\"}{end}{range .spec.containers[*]}{.image}{\"\n\"}{end}{end}" | sort -u'
+alias k9s="sofka"
 
 # Switch kubectl context using fuzzy search
 alias kct='kubectl config use-context $(kubectl config get-contexts -o name | fzf)'

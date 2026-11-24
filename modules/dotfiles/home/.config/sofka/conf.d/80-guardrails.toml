@@ -9,4 +9,3 @@ namespaces = ["kube-system"]
 actions = ["delete"]
 confirmation = "confirm"
 reason = "Confirm the you can delete it."
-

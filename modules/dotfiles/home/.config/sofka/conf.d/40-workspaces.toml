@@ -7,12 +7,20 @@ name = "Pods"
 resource = "pods"
 
 [[workspaces.views]]
+name = "Services"
+resource = "services"
+
+[[workspaces.views]]
 name = "Deployments"
 resource = "deployments"
 
 [[workspaces.views]]
-name = "Services"
-resource = "services"
+name = "Statefulsets"
+resource = "statefulsets"
+
+[[workspaces.views]]
+name = "Daemonset"
+resource = "daemonset"
 
 [[workspaces.views]]
 name = "Ingress"
@@ -64,6 +72,3 @@ namespace = "all"
 name = "ApplicationsSets"
 resource = "applicationsets.argoproj.io"
 namespace = "all"
-
-
-

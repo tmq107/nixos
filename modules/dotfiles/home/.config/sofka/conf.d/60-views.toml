@@ -21,3 +21,8 @@ wide = true
 name = "IMAGE"
 path = "/spec/template/spec/containers/0/image"
 type = "text"
+
+[[views."apps/v1/statefulsets".columns]]
+name = "IMAGE"
+path = "/spec/template/spec/containers/0/image"
+type = "text"

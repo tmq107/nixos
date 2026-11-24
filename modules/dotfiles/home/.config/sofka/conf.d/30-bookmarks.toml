@@ -6,7 +6,7 @@ filter = "status!=Running"
 sort = "RESTARTS:desc"
 
 [[bookmarks]]
-name = "secret bao control"
+name = "bao secret"
 resource = "secrets"
 namespace = "all"
 filter = "-l openbao-injection=enabled"
