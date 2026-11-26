@@ -33,6 +33,7 @@
             "ipv4.address" = "auto";
             "ipv4.nat" = "true";
             "ipv4.dhcp" = "true";
+            "ipv4.dhcp.expiry" = "infinite"; # keep ip until vm is deleted
             "dns.nameservers" = "1.1.1.1,1.0.0.1";
           };
         }
