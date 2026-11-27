@@ -76,7 +76,7 @@ in
       XDG_CONFIG_HOME = "/home/quanthai/.config";
       XDG_RUNTIME_DIR = "/run/t3code";
       PI_CODING_AGENT_DIR = "/home/quanthai/personal/pi-agent/agent";
-      T3CODE_TELEMETRY_ENABLED = "false"
+      T3CODE_TELEMETRY_ENABLED = "false";
     };
     serviceConfig = {
       User = "quanthai";
